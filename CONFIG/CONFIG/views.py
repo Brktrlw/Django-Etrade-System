@@ -1,6 +1,10 @@
 
-from django.shortcuts import render
+from django.shortcuts import render,redirect
+from django.contrib.auth import logout
 
-
-def homePage(request):
+def v_homePage(request):
     return render(request,"homePage.html")
+
+def v_logout(request):
+    logout(request)
+    return redirect("homePage")
