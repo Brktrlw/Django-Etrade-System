@@ -8,3 +8,6 @@ def v_homePage(request):
 def v_logout(request):
     logout(request)
     return redirect("homePage")
+
+def v_products(request):
+    return render(request,"products.html")
