@@ -41,7 +41,7 @@
           </div>
        </ul>
         {% else %}
-        <button class="btn btn-success"><i class="fa fa-sign-in" aria-hidden="true"></i> Giriş Yap</button>&nbsp;
+        <button class="btn btn-success"><a href="{% url 'login' %}" style="text-decoration: none;color: white"><i class="fa fa-sign-in" aria-hidden="true"></i> Giriş Yap</a></button>&nbsp;
         <button class="btn btn-primary"><i class="fa fa-user-plus" aria-hidden="true"></i> Kayıt Ol</button>&nbsp;
     {% endif %}
    </div>
