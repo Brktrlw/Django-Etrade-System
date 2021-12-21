@@ -1,5 +1,5 @@
 {% extends 'includes/base.html' %}
-
+{% load static %}
 {% block Title %}
     <title>Favorilerim</title>
 {% endblock Title %}
@@ -31,7 +31,8 @@
         {% for favorite in favorites %}
 
             <div class="row p-2 bg-white border rounded mt-2 shadow p-4 mb-0 rounded">
-                <div class="col-md-3 mt-1 "><img class="img-fluid img-responsive rounded product-image" src="https://cdn-icons-png.flaticon.com/512/817/817273.png"></div>
+                <div class="col-md-3 mt-1 ">
+                    <img class="img-fluid img-responsive rounded product-image" src="{{ favorite.product.productImage.url }}"></div>
                 <div class="col-md-6 mt-1 ">
                     <h5>{{ favorite.product.productTitle }}</h5>
                     <div class="d-flex flex-row ">

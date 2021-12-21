@@ -26,7 +26,13 @@
                     <img class="thumbnail" style="border-top-left-radius: 10px;border-top-right-radius: 10px" src="{{ product.productImage.url }}">
                     <div class="box-element">
                         <h6><strong>{{ product.productTitle }}</strong></h6>
+                        {% if product.productShipping == 0 %}
+                            <h6 class="text-danger">Kargoyu Alıcı Öder</h6>
+                        {% else %}
+                            <h6 class="text-success">Ücretsiz Kargo</h6>
+                        {% endif %}
                         <hr>
+
                         <span style="display: block" class="text-secondary">{{ product.productDescription|truncatechars:120 }}</span><br>
                         <button class="btn btn-outline-success" style="width: 32%"><i class="fa fa-cart-plus" aria-hidden="true"></i> Sepete Ekle</button>
                         <button class="btn btn-primary" style="width: 30%"><a href="#" style="text-decoration: none;color: white"><i class="fa fa-list-alt" aria-hidden="true"></i> Detaylar</a></button>
