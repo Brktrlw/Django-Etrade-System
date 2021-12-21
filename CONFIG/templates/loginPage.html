@@ -22,9 +22,11 @@
                 {% if messages %}
                     {% for message in messages %}
                         <div{% if message.tags %} class="alert alert-{{ message.tags }} m-3 p-3 rounded"{% endif %}><i
-                                class="fas fa-exclamation-triangle"></i> {{ message }}</div>
+                                class="fa fa-check" aria-hidden="true"></i> {{ message }}</div>
                     {% endfor %}
                 {% endif %}
+
+
                 <div class="col-12 col-md-8 col-lg-6 col-xl-5">
                     <div class="card bg-dark text-white" style="border-radius: 1rem;">
                         <div class="card-body p-5 text-center">

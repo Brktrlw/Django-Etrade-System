@@ -1,11 +1,17 @@
 {% extends 'includes/base.html' %}
 
 {% block Title %}
-<title>Ana Sayfa</title>
+    <title>Ana Sayfa</title>
 {% endblock Title %}
 
 {% block BODY %}
-    {% include 'includes/navbar.html' %}3
+    {% include 'includes/navbar.html' %}
+    {% if messages %}
+        {% for message in messages %}
+            <div{% if message.tags %} class="alert alert-{{ message.tags }} m-3 p-3 rounded"{% endif %}><i
+                    class="fa fa-check" aria-hidden="true"></i> {{ message }}</div>
+        {% endfor %}
+    {% endif %}
 
 
 

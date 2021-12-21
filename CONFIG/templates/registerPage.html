@@ -22,11 +22,23 @@
             <div class="row d-flex justify-content-center align-items-center h-100">
                 {% if messages %}
                     {% for message in messages %}
-                        <div{% if message.tags %} class="alert alert-{{ message.tags }} m-3 p-3 rounded"{% endif %}><i
-                                class="fas fa-exclamation-triangle"></i> {{ message }}</div>
+                        {% if message.tags == error %}
+                            <div{% if message.tags %} class="alert alert-danger m-3 p-3 rounded"{% endif %}>
+                                <i class="fa fa-check" aria-hidden="true"></i> {{ message }}</div>
+                        {% else %}
+                            <div{% if message.tags %} class="alert alert-{{ message.tags }} m-3 p-3 rounded"{% endif %}>
+                                <i
+                                        class="fa fa-check" aria-hidden="true"></i> {{ message }}</div>
+                        {% endif %}
                     {% endfor %}
                 {% endif %}
+
+
+
                 <div class="col-12 col-md-8 col-lg-6 col-xl-5">
+                 {% if form.non_field_errors %}
+                    <div class="alert alert-danger">{{ form.non_field_errors.as_text }}</div>
+                {% endif %}
                     <div class="card bg-dark text-white" style="border-radius: 1rem;">
                         <div class="card-body p-5 text-center">
                             <div class="mb-md-5 mt-md-4 pb-5">
@@ -34,20 +46,18 @@
                                 <p class="text-white-50 mb-5">Kayıt Formu</p>
                                 <form method="post">
                                     {% csrf_token %}
-                                    <label class="text-danger">{{ form.non_field_errors }}</label>
+
                                     {% for field in form %}
                                         <div class="form-outline form-white mb-4">
                                             {{ field }}
                                             <label class="form-label">{{ field.label }}</label>
                                             {% if field.errors %}
                                                 {% for error in field.errors %}
-
+                                                    <span style="text-danger"></span>
                                                 {% endfor %}
                                             {% endif %}
                                         </div>
                                     {% endfor %}
-                                    <p class="small mb-5 pb-lg-2"><a class="text-white-50" href="">Şifreni mi
-                                        unuttun?</a></p>
                                     <button class="btn btn-outline-light btn-lg px-5" type="submit"><i
                                             class="fas fa-sign-in-alt"></i> Kayıt Ol
                                     </button>
