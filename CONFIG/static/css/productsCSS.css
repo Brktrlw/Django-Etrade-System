@@ -1,0 +1,14 @@
+.box-element{
+    box-shadow: hsl(0,0%,80%) 0 0 16px;
+    background-color: #fff;
+    border-radius: 4px;
+    padding: 10px;
+}
+.productImage{
+    width: 100%;
+    height: 200px;
+    -webkit-box-shadow: -1px -3px 5px -2px;
+    -moz-box-shadow: -1px -3px 5px -2px;
+    box-shadow: -1px -3px 5px -2px;
+
+}

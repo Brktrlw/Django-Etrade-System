@@ -20,7 +20,6 @@ def v_register(request):
 
     return render(request, "registerPage.html", {"form": form})
 
-
 def v_login(request):
     form = LoginForm(request.POST or None)
     if form.is_valid():
@@ -35,3 +34,6 @@ def v_login(request):
             return redirect("homePage")
 
     return render(request, "loginPage.html", {"form": form})
+
+def v_cart(request):
+    return render(request,"cart.html")
