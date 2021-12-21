@@ -34,10 +34,16 @@
                                 <p class="text-white-50 mb-5">Kayıt Formu</p>
                                 <form method="post">
                                     {% csrf_token %}
+                                    <label class="text-danger">{{ form.non_field_errors }}</label>
                                     {% for field in form %}
                                         <div class="form-outline form-white mb-4">
                                             {{ field }}
                                             <label class="form-label">{{ field.label }}</label>
+                                            {% if field.errors %}
+                                                {% for error in field.errors %}
+
+                                                {% endfor %}
+                                            {% endif %}
                                         </div>
                                     {% endfor %}
                                     <p class="small mb-5 pb-lg-2"><a class="text-white-50" href="">Şifreni mi
@@ -48,7 +54,8 @@
                                 </form>
                             </div>
                             <div>
-                                <p class="mb-0">Hesabın Var mı? <a href="{% url 'login' %}" class="text-white-50 fw-bold">Giriş Yap</a></p>
+                                <p class="mb-0">Hesabın Var mı? <a href="{% url 'login' %}"
+                                                                   class="text-white-50 fw-bold">Giriş Yap</a></p>
                             </div>
                         </div>
                     </div>
@@ -57,5 +64,5 @@
         </div>
     </section>
 
-    <br>
+
 {% endblock BODY %}

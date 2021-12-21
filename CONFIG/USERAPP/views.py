@@ -11,7 +11,6 @@ def v_register(request):
         userName = form.cleaned_data.get("userName")
         password = form.cleaned_data.get("password")
         email    = form.cleaned_data.get("email")
-        print(userName,password,email,"***************************")
         newUser = User(username=userName)
         newUser.set_password(password)
         newUser.save()
