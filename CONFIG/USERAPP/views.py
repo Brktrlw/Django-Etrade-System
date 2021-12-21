@@ -1,9 +1,23 @@
 from django.shortcuts import render,redirect
-from .forms import LoginForm
+from .forms import LoginForm,RegisterForm
 from django.contrib.auth import authenticate,login
+from django.contrib.auth.models import User
+
 
 def v_register(request):
-    pass
+    form=RegisterForm(request.POST or None)
+
+    if form.is_valid():
+        userName = form.cleaned_data.get("userName")
+        password = form.cleaned_data.get("password")
+        email    = form.cleaned_data.get("email")
+        print(userName,password,email,"***************************")
+        newUser = User(username=userName)
+        newUser.set_password(password)
+        newUser.save()
+        login(request,newUser)
+        return redirect("homePage")
+    return render(request,"registerPage.html",{"form":form})
 
 def v_login(request):
     form=LoginForm(request.POST or None)
