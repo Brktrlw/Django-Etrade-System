@@ -6,7 +6,7 @@ class ProductModel(models.Model):
     productTitle = models.CharField(max_length=50, verbose_name="Ürün İsmi")
     productPrice = models.FloatField(verbose_name="Ürün Fiyatı")
     productDescription = models.TextField(max_length=500, verbose_name="Ürün Açıklaması")
-    productImage = models.ImageField(verbose_name="Ürün Görseli")
+    productImage = models.ImageField(verbose_name="Ürün Görseli",upload_to="static/images/")
 
     def __str__(self):
         return self.productTitle
