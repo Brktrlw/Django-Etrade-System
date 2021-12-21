@@ -6,5 +6,5 @@ urlpatterns = [
     path("",views.v_homePage,name="homePage"),
     path("logout/",views.v_logout,name="logout"),
     path("user/",include("USERAPP.urls")),
-    path("products/",views.v_products)
+    path("products/",views.v_products,name="products")
 ]

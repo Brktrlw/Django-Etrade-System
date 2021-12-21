@@ -57,7 +57,6 @@
                         <div id="shipping-info">
                             <hr>
                             <p>&nbsp; Adres:</p>
-                            <hr>
 
 
                             <div class="">
@@ -68,11 +67,13 @@
                                     <option value="3">Three</option>
                                 </select>
                             </div>
+                            <br>
+                        <a  class="btn btn-primary btn-block" style="color: white"><i class="fa fa-map-marker" aria-hidden="true"></i> Yeni Adres Ekle</a>
 
                         </div>
+                        <br>
 
-                        <hr>
-                        <button class="btn btn-success btn-block">Devam Et</button>
+                        <button class="btn btn-success btn-block"><i class="fa fa-arrow-circle-right" aria-hidden="true"></i> Ödemeye Geç</button>
                     </form>
                 </div>
 
@@ -83,7 +84,7 @@
 
             <div class="col-lg-6">
                 <div class="box-element">
-                    <a class="btn btn-outline-dark" href=""><i class="fa fa-arrow-left" aria-hidden="true"></i> Sepete
+                    <a class="btn btn-outline-dark" href="{% url 'cart' %}"><i class="fa fa-arrow-left" aria-hidden="true"></i> Sepete
                         Geri Dön</a>
                     <hr>
                     <h3>Sipariş Özeti</h3>
