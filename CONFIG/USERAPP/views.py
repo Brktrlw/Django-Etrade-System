@@ -3,6 +3,7 @@ from .forms import LoginForm, RegisterForm
 from django.contrib.auth import authenticate, login
 from django.contrib.auth.models import User
 from django.contrib import messages
+from PRODUCTS.models import CartModel
 
 def v_register(request):
     form = RegisterForm(request.POST or None)
@@ -36,6 +37,8 @@ def v_login(request):
     return render(request, "loginPage.html", {"form": form})
 
 def v_cart(request):
+    products = CartModel.objects.filter(customer_id=request.user.id)
+    print(products)
     return render(request,"cart.html")
 
 def v_checkout(request):
