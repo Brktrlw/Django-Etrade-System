@@ -3,7 +3,7 @@ from .forms import LoginForm, RegisterForm
 from django.contrib.auth import authenticate, login
 from django.contrib.auth.models import User
 from django.contrib import messages
-from PRODUCTS.models import CartModel
+from PRODUCTS.models import CartModel,FavoriteModel
 
 def v_register(request):
     form = RegisterForm(request.POST or None)
@@ -38,7 +38,14 @@ def v_login(request):
 
 def v_cart(request):
     products = CartModel.objects.filter(customer=request.user)
-    return render(request,"cart.html",{"products":products})
+    total=0
+    for product_ in products:
+        total+= product_.amount*product_.product.productPrice
+    return render(request,"cart.html",{"products":products,"total":total})
 
 def v_checkout(request):
     return render(request,"checkout.html")
+
+def v_favorites(request):
+    favorites = FavoriteModel.objects.filter(customer=request.user)
+    return render(request,"favorites.html",{"favorites":favorites})

@@ -1,6 +1,7 @@
 <nav class="navbar navbar-expand-lg navbar-dark bg-dark">
    <a class="navbar-brand" href="{% url 'homePage' %}">E-Trade</a>
-   <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+   <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent"
+      aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
    <span class="navbar-toggler-icon"></span>
    </button>
    <div class="collapse navbar-collapse" id="navbarSupportedContent">
@@ -9,7 +10,8 @@
             <a class="nav-link" href="{% url 'homePage' %}">Ana Sayfa <span class="sr-only"></span></a>
          </li>
          <li class="nav-item dropdown">
-            <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+            <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown"
+               aria-haspopup="true" aria-expanded="false">
             Kategoriler
             </a>
             <div class="dropdown-menu" aria-labelledby="navbarDropdown">
@@ -18,35 +20,50 @@
                <a class="dropdown-item" href="#">Something else here</a>
             </div>
          </li>
-          <li class="nav-item active">
+         <li class="nav-item active">
             <a class="nav-link" href="{% url 'products' %}">Ürünler <span class="sr-only"></span></a>
          </li>
          <form class="form-inline my-2 my-lg-0">
             <input class="form-control mr-sm-2" type="search" placeholder="Ürün ara" aria-label="Search">
-            <button class="btn btn-outline-success my-2 my-sm-0" type="submit"><i class="fa fa-search" aria-hidden="true"></i> Ara</button>
+            <button class="btn btn-outline-success my-2 my-sm-0" type="submit"><i class="fa fa-search"
+               aria-hidden="true"></i> Ara
+            </button>
          </form>
       </ul>
    </div>
-    {% if user.is_authenticated %}
+   {% if user.is_authenticated %}
        <ul class="navbar-nav mr-auto">
-
-       <button class="btn btn-success"><a href="{% url 'cart' %}" style="text-decoration: none;color: white"><i class="fa" style="font-size:24px">&#xf07a;&nbsp;</i><span class='badge badge-warning' id='lblCartCount'> 5 </span> Sepetim</a></button>&nbsp;
+          <button class="btn btn-outline-success"><a href="{% url 'cart' %}"
+             style="text-decoration: none;color: white"><i class="fa"
+             style="font-size:24px">&#xf07a;&nbsp;</i><span
+             class='badge badge-warning' id='lblCartCount'>
+          {% if products|length == 0 %}
+              BOŞ
+          {% else %}
+              {{ products|length }}
+          {% endif %}
+          </span> Sepetim</a></button>&nbsp;
           <div class="btn-group">
-
-             <button type="button" class="btn btn-primary dropdown-toggle" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+             <button type="button" class="btn btn-primary dropdown-toggle" data-toggle="dropdown"
+                aria-haspopup="true" aria-expanded="false">
              <i class="fa fa-user" aria-hidden="true"></i> Hesabım
              </button>
-
              <div class="dropdown-menu dropdown-menu-right">
-                <button class="dropdown-item" type="button"><a href="" style="text-decoration: none;color: black"><i class="fa fa-heart" aria-hidden="true" style="color: red"></i> Favorilerim</a></button>
-                <button class="dropdown-item" type="button"><a href="" style="text-decoration: none;color: black"><i class="fa fa-cogs" aria-hidden="true" style="color: gray;"></i> Ayarlar</a></button>
-                <button type="button" class="dropdown-item" data-toggle="modal" data-target="#logoutModal"><a style="text-decoration: none;color: black"><i class="fa fa-sign-out" aria-hidden="true"></i> Çıkış Yap</a></button>
+                <button class="dropdown-item" type="button"><a href="{% url 'favorites' %}" style="text-decoration: none;color: black"><i
+                   class="fa fa-heart" aria-hidden="true" style="color: red"></i> Favorilerim</a></button>
+                <button class="dropdown-item" type="button"><a href="" style="text-decoration: none;color: black"><i
+                   class="fa fa-cogs" aria-hidden="true" style="color: gray;"></i> Ayarlar</a></button>
+                <button type="button" class="dropdown-item" data-toggle="modal" data-target="#logoutModal"><a
+                   style="text-decoration: none;color: black"><i class="fa fa-sign-out" aria-hidden="true"></i>
+                Çıkış Yap</a></button>
              </div>
           </div>
        </ul>
-        {% else %}
-        <button class="btn btn-success"><a href="{% url 'login' %}" style="text-decoration: none;color: white"><i class="fa fa-sign-in" aria-hidden="true"></i> Giriş Yap</a></button>&nbsp;
-        <button class="btn btn-primary"><a href="{% url 'register' %}" style="text-decoration: none;color: white"><i class="fa fa-user-plus" aria-hidden="true"></i> Kayıt Ol</a></button>&nbsp;
-    {% endif %}
+   {% else %}
+       <button class="btn btn-success"><a href="{% url 'login' %}" style="text-decoration: none;color: white"><i
+          class="fa fa-sign-in" aria-hidden="true"></i> Giriş Yap</a></button>&nbsp;
+       <button class="btn btn-primary"><a href="{% url 'register' %}" style="text-decoration: none;color: white"><i
+          class="fa fa-user-plus" aria-hidden="true"></i> Kayıt Ol</a></button>&nbsp;
+   {% endif %}
    </div>
 </nav>

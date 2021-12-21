@@ -34,8 +34,10 @@
                 <br>
                 <table class="table">
                     <tr>
-                        <th><h5>Ürünler: <strong>3</strong></h5></th>
-                        <th><h5>Toplam: <strong>₺</strong></h5></th>
+                        <th><h5>Ürünler: <strong>
+                            {{ products |length }}
+                        </strong></h5></th>
+                        <th><h5>Toplam: <strong>₺ {{ total }}</strong></h5></th>
                         <th>
                             <a style="float: right;margin:5px" class="btn btn-success" href="{% url 'checkout' %}"><i class="fa fa-credit-card" aria-hidden="true"></i> Ödeme Yap</a>
                         </th>
@@ -66,8 +68,8 @@
                             </div>
                         </div>
                         <div style="flex: 1"><strong><h3>
-                            {% with numerator=product_.amount denominator=product_.product.productPrice %}
-                            {{ numerator|mul:denominator }}
+                            {% with amount=product_.amount price=product_.product.productPrice %}
+                            {{ amount|mul:price }} {# ÜRÜNLERİN ADETLERİNE GÖRE FİYATLARI #}
                             {% endwith %}
                         </h3></strong></div>
                     </div>

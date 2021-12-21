@@ -6,6 +6,7 @@ class ProductModel(models.Model):
     productPrice = models.FloatField(verbose_name="Ürün Fiyatı")
     productDescription = models.TextField(max_length=500, verbose_name="Ürün Açıklaması")
     productImage = models.ImageField(verbose_name="Ürün Görseli", upload_to="media/",blank=True,null=True)
+    productShipping = models.BooleanField(default=False,verbose_name="Ücretsiz Kargo Mu",blank=False,null=False)
 
     def __str__(self):
         return self.productTitle
@@ -45,6 +46,13 @@ class CartModel(models.Model):
     customer = models.ForeignKey(User,on_delete=models.SET_NULL,verbose_name="Müşteri",null=True)
     product  = models.ForeignKey(ProductModel,on_delete=models.SET_NULL,verbose_name="Ürün",null=True)
     amount   = models.IntegerField(verbose_name="Adet",null=False)
+
+    def __str__(self):
+        return str(self.product)
+
+class FavoriteModel(models.Model):
+    customer = models.ForeignKey(User,on_delete=models.CASCADE,verbose_name="Müşteri")
+    product  = models.ForeignKey(ProductModel,on_delete=models.CASCADE,verbose_name="Ürün")
 
     def __str__(self):
         return str(self.product)
