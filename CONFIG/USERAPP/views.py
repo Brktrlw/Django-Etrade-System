@@ -37,3 +37,6 @@ def v_login(request):
 
 def v_cart(request):
     return render(request,"cart.html")
+
+def v_checkout(request):
+    return render(request,"checkout.html")
