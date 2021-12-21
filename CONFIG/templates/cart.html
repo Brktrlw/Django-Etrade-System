@@ -1,5 +1,6 @@
 {% extends 'includes/base.html' %}
 {% load static %}
+{% load mathfilters %}
 {% block Title %}
     <title>Sepetim</title>
 {% endblock Title %}
@@ -34,7 +35,7 @@
                 <table class="table">
                     <tr>
                         <th><h5>Ürünler: <strong>3</strong></h5></th>
-                        <th><h5>Toplam: <strong>₺52</strong></h5></th>
+                        <th><h5>Toplam: <strong>₺</strong></h5></th>
                         <th>
                             <a style="float: right;margin:5px" class="btn btn-success" href="{% url 'checkout' %}"><i class="fa fa-credit-card" aria-hidden="true"></i> Ödeme Yap</a>
                         </th>
@@ -52,19 +53,25 @@
                 </div>
 
                 <!-- Ürün Başlangıcı-->
-                <div class="cart-row">
-                    <div style="flex: 2"><img class="cart-product-image" style="" src="{% static 'images/bg.jpg' %}" alt=""></div>
-                    <div style="flex: 2">Ürün Adı</div>
-                    <div style="flex: 1">₺45</div>
-                    <div style="flex: 1;">
-                        <p class="quantity">2 Adet</p>
-                        <div class="">
-                            <button class="btn btn-success"><i class="fa fa-plus" aria-hidden="true"></i></button>
-                            <button class="btn btn-danger"><i class="fa fa-minus" aria-hidden="true"></i></button>
+                {% for product_ in products %}
+                    <div class="cart-row">
+                        <div style="flex: 2"><img class="cart-product-image" style="" src="{% static 'images/bg.jpg' %}" alt=""></div>
+                        <div style="flex: 2">{{ product_.product.productTitle }}</div>
+                        <div style="flex: 1">₺ {{ product_.product.productPrice }}</div>
+                        <div style="flex: 1;">
+                            <p class="quantity">{{ product_.amount }} Adet</p>
+                            <div class="">
+                                <button class="btn btn-success"><i class="fa fa-plus" aria-hidden="true"></i></button>
+                                <button class="btn btn-danger"><i class="fa fa-minus" aria-hidden="true"></i></button>
+                            </div>
                         </div>
+                        <div style="flex: 1"><strong><h3>
+                            {% with numerator=product_.amount denominator=product_.product.productPrice %}
+                            {{ numerator|mul:denominator }}
+                            {% endwith %}
+                        </h3></strong></div>
                     </div>
-                    <div style="flex: 1"><strong><h3>₺90</h3></strong></div>
-                </div>
+                {% endfor %}
                <!-- Ürün Bitişi-->
 
 

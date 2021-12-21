@@ -27,7 +27,8 @@ INSTALLED_APPS = [
     'django.contrib.staticfiles',
     'USERAPP',
     'PRODUCTS',
-    'django_cleanup'
+    'django_cleanup',
+    'mathfilters'
 ]
 
 MIDDLEWARE = [

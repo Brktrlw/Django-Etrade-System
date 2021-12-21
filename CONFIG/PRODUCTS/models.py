@@ -47,7 +47,7 @@ class CartModel(models.Model):
     amount   = models.IntegerField(verbose_name="Adet",null=False)
 
     def __str__(self):
-        return str(self.customer) + " | " +  str(self.product) + " | " + str(self.amount) + " Adet"
+        return str(self.product)
 # class ShippingAddress(models.Model):
 #    customer = models.ForeignKey(CustomerModel,on_delete=models.SET_NULL,verbose_name="Müşteri")
 #    order    = models.ForeignKey(OrderModel,on_delete=models.SET_NULL,null=True)

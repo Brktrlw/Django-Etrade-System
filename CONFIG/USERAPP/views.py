@@ -37,9 +37,8 @@ def v_login(request):
     return render(request, "loginPage.html", {"form": form})
 
 def v_cart(request):
-    products = CartModel.objects.filter(customer_id=request.user.id)
-    print(products)
-    return render(request,"cart.html")
+    products = CartModel.objects.filter(customer=request.user)
+    return render(request,"cart.html",{"products":products})
 
 def v_checkout(request):
     return render(request,"checkout.html")
