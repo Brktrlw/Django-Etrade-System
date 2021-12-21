@@ -12,7 +12,6 @@ class LoginForm(forms.Form):
         self.fields["password"].widget = forms.PasswordInput(
             attrs={"placeholder": "Parolanızı Giriniz", "class": "form-control form-control-lg"})
 
-
 class RegisterForm(forms.Form):
     userName = forms.CharField(max_length=50, label="Kullanıcı Adı", required=True)
     password = forms.CharField(max_length=150, label="Parola", required=True)
