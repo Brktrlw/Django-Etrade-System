@@ -1,5 +1,6 @@
 {% extends 'includes/base.html' %}
 {% load static %}
+
 {% block Title %}
     <title>Ana Sayfa</title>
 {% endblock Title %}
@@ -23,7 +24,8 @@
             {% for product in products %}
                 <!-- Ürün Başlangıcı -->
                 <div class="col-lg-4" style="margin-bottom: 20px">
-                    <img class="thumbnail" style="border-top-left-radius: 10px;border-top-right-radius: 10px" src="{{ product.productImage.url }}">
+                    <img class="thumbnail" style="border-top-left-radius: 10px;border-top-right-radius: 10px"
+                         src="{{ product.productImage.url }}">
                     <div class="box-element">
                         <h6><strong>{{ product.productTitle }}</strong></h6>
                         {% if product.productShipping == 0 %}
@@ -32,17 +34,37 @@
                             <h6 class="text-success">Ücretsiz Kargo</h6>
                         {% endif %}
                         <hr>
+                        {% for value in product.productCategorie.values %}
+                            {% for key,value_ in value.items %}
+                                {% if value_.isnumeric  %}
+                                {% else %}
+                                    <span class="badge badge-secondary">{{ value_ }}</span>
+                                {% endif %}
+                            {% endfor %}
 
-                        <span style="display: block" class="text-secondary">{{ product.productDescription|truncatechars:120 }}</span><br>
-                        <button class="btn btn-outline-success" style="width: 32%"><i class="fa fa-cart-plus" aria-hidden="true"></i> Sepete Ekle</button>
-                        <button class="btn btn-primary" style="width: 30%"><a href="#" style="text-decoration: none;color: white"><i class="fa fa-list-alt" aria-hidden="true"></i> Detaylar</a></button>
-                        <button class="btn btn-info" style="display: inline-block;float: right;width: 25%;"><strong>₺ {{ product.productPrice}}</strong></button>
-                        <button class="btn btn-outline-danger" style="width: 10%"><i class="fa fa-heart" aria-hidden="true"></i></button>
+
+                        {% endfor %}
+
+                        <span class="badge badge-secondary"></span>
+
+
+                        <span style="display: block"
+                              class="text-secondary">{{ product.productDescription|truncatechars:120 }}</span><br>
+                        <button class="btn btn-outline-success" style="width: 32%"><i class="fa fa-cart-plus"
+                                                                                      aria-hidden="true"></i> Sepete
+                            Ekle
+                        </button>
+                        <button class="btn btn-primary" style="width: 30%"><a href="#"
+                                                                              style="text-decoration: none;color: white"><i
+                                class="fa fa-list-alt" aria-hidden="true"></i> Detaylar</a></button>
+                        <button class="btn btn-info" style="display: inline-block;float: right;width: 25%;">
+                            <strong>₺ {{ product.productPrice }}</strong></button>
+                        <button class="btn btn-outline-danger" style="width: 10%"><i class="fa fa-heart"
+                                                                                     aria-hidden="true"></i></button>
                     </div>
                 </div>
                 <!-- Ürün Bitişi -->
             {% endfor %}
-
 
 
         </div>

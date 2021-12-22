@@ -47,8 +47,9 @@ h1,h2,h3,h4,h5,h6{
 	margin-top: 10px;
 }
 .cart-product-image{
-    width: 100px;border-radius: 10px;
-    -webkit-box-shadow: -1px -3px 5px -2px;
+    width: 100px;
+	border-radius: 10px;
+    -webkit-box-shadow: -1px 0px 3px -1px;
 }
 
 .row-image{

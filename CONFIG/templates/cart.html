@@ -57,7 +57,7 @@
                 <!-- Ürün Başlangıcı-->
                 {% for product_ in products %}
                     <div class="cart-row">
-                        <div style="flex: 2"><img class="cart-product-image" style="" src="{% static 'images/bg.jpg' %}" alt=""></div>
+                        <div style="flex: 2"><img class="cart-product-image" style="padding:10px" src="{{ product_.product.productImage.url }}" alt=""></div>
                         <div style="flex: 2">{{ product_.product.productTitle }}</div>
                         <div style="flex: 1">₺ {{ product_.product.productPrice }}</div>
                         <div style="flex: 1;">
