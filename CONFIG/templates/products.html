@@ -1,5 +1,6 @@
 {% extends 'includes/base.html' %}
 {% load static %}
+{% load extras %}
 
 {% block Title %}
     <title>Ana Sayfa</title>
@@ -35,11 +36,13 @@
                         {% endif %}
                         <hr>
                         {% for value in product.productCategorie.values %}
-                            {% for key,value_ in value.items %}
-                                {% if value_.isnumeric  %}
-                                {% else %}
-                                    <span class="badge badge-secondary">{{ value_ }}</span>
+                            {% for value_,key in value.items%}
+                                {% if key|is_numeric  %}
+
+                                    {% else %}
+                                       <span class="badge badge-secondary">{{ key }}</span>
                                 {% endif %}
+
                             {% endfor %}
 
 
