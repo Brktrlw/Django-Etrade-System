@@ -91,7 +91,7 @@
                     <hr>
                     {% for product_ in products%}
                         <div class="cart-row">
-                            <div style="flex:2"><img class="row-image cart-product-image" src="{{ product_.product.productImage.url }}"></div>
+                            <div style="flex:2"><img class="row-image cart-product-image" style="padding:10px;cursor: pointer" src="{{ product_.product.productImage.url }}"></div>
                             <div style="flex:2"><p>{{ product_.product.productTitle }}</p></div>
                             <div style="flex:1"><p>{{ product_.product.productPrice }}</p></div>
                             <div style="flex:1"><p>x{{ product_.amount }}</p></div>

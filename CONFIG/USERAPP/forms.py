@@ -40,3 +40,4 @@ class RegisterForm(forms.Form):
 
         values = {"userName": userName, "password": password, "email": email}
         return values
+

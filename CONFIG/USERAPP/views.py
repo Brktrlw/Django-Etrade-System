@@ -3,7 +3,8 @@ from .forms import LoginForm, RegisterForm
 from django.contrib.auth import authenticate, login
 from django.contrib.auth.models import User
 from django.contrib import messages
-from PRODUCTS.models import CartModel,FavoriteModel
+from USERAPP.models import CartModel,FavoriteModel
+
 
 def v_register(request):
     form = RegisterForm(request.POST or None)
