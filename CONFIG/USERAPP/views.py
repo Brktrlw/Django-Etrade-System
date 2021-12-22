@@ -44,7 +44,11 @@ def v_cart(request):
     return render(request,"cart.html",{"products":products,"total":total})
 
 def v_checkout(request):
-    return render(request,"checkout.html")
+    products = CartModel.objects.filter(customer=request.user)
+    total=0
+    for product_ in products:
+        total += product_.product.productPrice * product_.amount
+    return render(request,"checkout.html",{"products":products,"total":total})
 
 def v_favorites(request):
     favorites = FavoriteModel.objects.filter(customer=request.user)

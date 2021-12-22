@@ -89,15 +89,18 @@
                     <hr>
                     <h3>Sipariş Özeti</h3>
                     <hr>
-                    <div class="cart-row">
-                        <div style="flex:2"><img class="row-image cart-product-image"
-                                                 src="{% static 'images/bg.jpg' %}"></div>
-                        <div style="flex:2"><p>Ürün Adı</p></div>
-                        <div style="flex:1"><p>$20.00</p></div>
-                        <div style="flex:1"><p>x2</p></div>
-                    </div>
+                    {% for product_ in products%}
+                        <div class="cart-row">
+                            <div style="flex:2"><img class="row-image cart-product-image" src="{{ product_.product.productImage.url }}"></div>
+                            <div style="flex:2"><p>{{ product_.product.productTitle }}</p></div>
+                            <div style="flex:1"><p>{{ product_.product.productPrice }}</p></div>
+                            <div style="flex:1"><p>x{{ product_.amount }}</p></div>
+                        </div>
+                    {% endfor %}
+
                     <h5>Ürünler: 2</h5>
-                    <h5>Toplam Fiyat: <strong><h4 style="display: inline;">₺ 4</h4></strong></h5>
+
+                    <h5>Toplam Fiyat: <strong><h4 style="display: inline;">₺ {{ total }}</h4></strong></h5>
                 </div>
             </div>
         </div>
