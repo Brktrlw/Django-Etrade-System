@@ -4,9 +4,9 @@ from PRODUCTS.models import ProductModel
 
 class AddressModel(models.Model):
     customer = models.ForeignKey(User, on_delete=models.CASCADE, verbose_name="Müşteri")
+    addressTitle = models.CharField(verbose_name="Adres Başlığı", max_length=50, null=False, blank=False)
     addressCity = models.CharField(max_length=100, verbose_name="Şehir")
     addressText = models.TextField(verbose_name="Adres Detayı", max_length=1000, null=False, blank=False)
-    addressTitle = models.CharField(verbose_name="Adres Başlığı", max_length=50, null=False, blank=False)
 
     def __str__(self):
         return self.addressTitle

@@ -1,10 +1,9 @@
 from django.shortcuts import render, redirect
-from .forms import LoginForm, RegisterForm
+from .forms import LoginForm, RegisterForm,AddressForm
 from django.contrib.auth import authenticate, login
 from django.contrib.auth.models import User
 from django.contrib import messages
-from USERAPP.models import CartModel,FavoriteModel
-
+from USERAPP.models import CartModel,FavoriteModel,AddressModel
 
 def v_register(request):
     form = RegisterForm(request.POST or None)
@@ -37,6 +36,10 @@ def v_login(request):
 
     return render(request, "loginPage.html", {"form": form})
 
+def v_favorites(request):
+    favorites = FavoriteModel.objects.filter(customer=request.user)
+    return render(request,"favorites.html",{"favorites":favorites})
+
 def v_cart(request):
     products = CartModel.objects.filter(customer=request.user)
     total=0
@@ -45,12 +48,32 @@ def v_cart(request):
     return render(request,"cart.html",{"products":products,"total":total})
 
 def v_checkout(request):
+    #Address eklendiğinde çalışan blok
+    form=AddressForm(request.POST or None)
+    if form.is_valid():
+        address=form.save(commit=False)
+        address.addressTitle=form.cleaned_data.get("addressTitle")
+        address.addressCity= form.cleaned_data.get("addressCity")
+        address.addressText= form.cleaned_data.get("addressText")
+        address.customer  = request.user
+        address.save()
+        messages.success(request,"Address Başarıyla Eklendi")
+        return redirect("checkout")
+    #Address eklendiğinde çalışan blok
+
+    customerAddress=AddressModel.objects.filter(customer=request.user)
     products = CartModel.objects.filter(customer=request.user)
     total=0
     for product_ in products:
         total += product_.product.productPrice * product_.amount
-    return render(request,"checkout.html",{"products":products,"total":total})
 
-def v_favorites(request):
-    favorites = FavoriteModel.objects.filter(customer=request.user)
-    return render(request,"favorites.html",{"favorites":favorites})
+    return render(request,"checkout.html",{"products":products,"total":total,"form":form,"customerAddress":customerAddress})
+
+
+
+def f_addAddress(request):
+    pass
+
+
+
+
