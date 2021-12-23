@@ -1,6 +1,7 @@
 from django import forms
 from .models import AddressModel
 
+
 class LoginForm(forms.Form):
     userName = forms.CharField(max_length=50, label="Kullanıcı Adı", required=True)
     password = forms.CharField(widget=forms.PasswordInput, max_length=150, label="Parola", required=True)
@@ -41,13 +42,18 @@ class RegisterForm(forms.Form):
         values = {"userName": userName, "password": password, "email": email}
         return values
 
+
 class AddressForm(forms.ModelForm):
     class Meta:
         model = AddressModel
-        fields = ["addressTitle", "addressCity","addressText"]
+        fields = ["addressTitle", "addressCity", "addressText"]
 
     def __init__(self, *args, **kwargs):
         super(AddressForm, self).__init__(*args, **kwargs)
-        self.fields["addressTitle"].widget=forms.TextInput(attrs={"class":"form-control","placeholder":"Adres Başlığı Giriniz"})
-        self.fields["addressText"].widget=forms.Textarea(attrs={"class":"form-control","placeholder":"Adres İçeriğini Giriniz","rows":4,"style":"max-height: 150px;"})
-        self.fields["addressCity"].widget=forms.TextInput(attrs={"class":"form-control","placeholder":"Şehir Giriniz"})
+        self.fields["addressTitle"].widget = forms.TextInput(
+            attrs={"class": "form-control", "placeholder": "Adres Başlığı Giriniz"})
+        self.fields["addressText"].widget = forms.Textarea(
+            attrs={"class": "form-control", "placeholder": "Adres İçeriğini Giriniz", "rows": 4,
+                   "style": "max-height: 150px;"})
+        self.fields["addressCity"].widget = forms.TextInput(
+            attrs={"class": "form-control", "placeholder": "Şehir Giriniz"})
