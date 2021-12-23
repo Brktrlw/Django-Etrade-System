@@ -2,9 +2,9 @@ from django.db import models
 from USERAPP.models import AddressModel
 from PRODUCTS.models import ProductModel
 from django.contrib.auth.models import User
-
+from USERAPP.models import CustomUserModel
 class OrderModel(models.Model):
-    customer = models.ForeignKey(User, on_delete=models.SET_NULL, blank=True, null=True,
+    customer = models.ForeignKey(CustomUserModel, on_delete=models.SET_NULL, blank=True, null=True,
                                  verbose_name="Müşteri")
     date_order = models.DateTimeField(auto_now_add=True, verbose_name="Sipariş Tarihi")
     complete = models.BooleanField(default=False, null=True, blank=False, verbose_name="Tamamlandı mı")

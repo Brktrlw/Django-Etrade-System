@@ -126,3 +126,4 @@ MESSAGE_TAGS = {message_constants.DEBUG: 'debug',
 
 MEDIA_URL = "/media/"
 MEDIA_ROOT = os.path.join(BASE_DIR, "media")
+AUTH_USER_MODEL = "USERAPP.CustomUserModel"

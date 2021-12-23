@@ -3,7 +3,7 @@ from .forms import LoginForm, RegisterForm,AddressForm
 from django.contrib.auth import authenticate, login
 from django.contrib.auth.models import User
 from django.contrib import messages
-from USERAPP.models import CartModel,FavoriteModel,AddressModel
+from USERAPP.models import CartModel,FavoriteModel,AddressModel,CustomUserModel
 
 def v_register(request):
     form = RegisterForm(request.POST or None)
@@ -71,7 +71,8 @@ def v_checkout(request):
 
 
 def v_profile(request):
-    return render(request,"profile.html")
+    user=CustomUserModel.objects.filter(id=request.user.id)
+    return render(request,"profile.html",{"user":user[0]})
 
 
 
