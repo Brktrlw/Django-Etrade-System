@@ -1,3 +1,4 @@
+
 <nav class="navbar navbar-expand-lg navbar-dark bg-dark">
    <a class="navbar-brand" href="{% url 'homePage' %}">E-Trade</a>
    <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent"
@@ -15,9 +16,10 @@
             Kategoriler
             </a>
             <div class="dropdown-menu" aria-labelledby="navbarDropdown">
-               <a class="dropdown-item" href="#">Action</a>
-               <a class="dropdown-item" href="#">Another action</a>
-               <a class="dropdown-item" href="#">Something else here</a>
+               <a class="dropdown-item" href="/products/categorie/2"><i class="fa fa-desktop" aria-hidden="true"></i> Bilgisayar</a>
+               <a class="dropdown-item" href="/products/categorie/1"><i class="fa fa-mobile" aria-hidden="true"></i> Telefon</a>
+               <a class="dropdown-item" href="/products/categorie/4">Fare</a>
+               <a class="dropdown-item" href="/products/categorie/3"><i class="fa fa-keyboard-o" aria-hidden="true"></i> Klavye</a>
             </div>
          </li>
          <li class="nav-item active">
@@ -67,3 +69,4 @@
    {% endif %}
    </div>
 </nav>
+

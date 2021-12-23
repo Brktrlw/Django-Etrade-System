@@ -10,6 +10,3 @@ def v_logout(request):
     logout(request)
     return redirect("homePage")
 
-def v_products(request):
-    products = ProductModel.objects.all()
-    return render(request,"products.html",{"products":products})
