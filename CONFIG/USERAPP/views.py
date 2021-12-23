@@ -70,9 +70,8 @@ def v_checkout(request):
     return render(request,"checkout.html",{"products":products,"total":total,"form":form,"customerAddress":customerAddress})
 
 
-
-def f_addAddress(request):
-    pass
+def v_profile(request):
+    return render(request,"profile.html")
 
 
 

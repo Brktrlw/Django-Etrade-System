@@ -35,10 +35,10 @@
 
                   <p>&nbsp; Adres:</p>
                   <div class="">
-                     <select class="custom-select" id="inputGroupSelect01">
-                        <option selected>Adres Seçimi</option>
+                     <select style="cursor: pointer" class="custom-select" id="inputGroupSelect01">
+                        <option style="cursor: pointer" selected>Adres Seçimi</option>
                          {% for Address in customerAddress %}
-                                 <option value="{{ Address.id }}">{{ Address.addressTitle }}</option>
+                                <option style="cursor: pointer" value="{{ Address.id }}">{{ Address.addressTitle }}</option>
                          {% endfor %}
                      </select>
                   </div>
