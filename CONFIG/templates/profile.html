@@ -1,76 +1,86 @@
 {% extends 'includes/base.html' %}
 {% load static %}
 {% block Title %}
-    <title>Profilim</title>
+<title>Profilim</title>
 {% endblock Title %}
 {% block CSS %}
-        <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.1/css/bootstrap.min.css">
-        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta2/css/all.min.css">
-        <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css">
-        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.css">
-        <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css" rel="stylesheet">
-        <link rel="stylesheet" href="{% static 'css/profileCSS.css' %}">
+<link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.1/css/bootstrap.min.css">
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta2/css/all.min.css">
+<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css">
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.css">
+<link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css" rel="stylesheet">
+<link rel="stylesheet" href="{% static 'css/profileCSS.css' %}">
 {% endblock %}
 {% block BODY %}
-    {% include 'includes/navbar.html' %}
-    {% if messages %}
-        {% for message in messages %}
-            <div{% if message.tags %} class="alert alert-{{ message.tags }} m-3 p-3 rounded"{% endif %}><i
-                    class="fa fa-check" aria-hidden="true"></i> {{ message }}</div>
-        {% endfor %}
-    {% endif %}
-
-
-    <div class="wrapper bg-white mt-sm-5">
-    <h4 class="pb-4 border-bottom">Profil Ayarları</h4>
-    <div class="d-flex align-items-start py-3 border-bottom"> <img src="https://images.pexels.com/photos/1037995/pexels-photo-1037995.jpeg?auto=compress&cs=tinysrgb&dpr=1&w=500" class="img" alt="">
-        <div class="pl-sm-4 pl-2" id="img-section"> <b>Profil Fotoğrafı Yükle</b>
-            <p>En fazla 1MB boyutunda fotoğraf yükleyebilirsiniz.</p> <button class="btn button border"><b><i class="fa fa-folder-open-o" aria-hidden="true"></i> Yükle</b></button>
-        </div>
-    </div>
-    <div class="py-2">
-        <div class="row py-2">
-            <div class="col-md-6"> <label for="firstname">İsim</label> <input value="{{ user.first_name }}" type="text" class="bg-light form-control" placeholder="Adınızı giriniz"> </div>
-            <div class="col-md-6 pt-md-0 pt-3"> <label for="lastname">Soy isim</label> <input value="{{ user.last_name }}" type="text" class="bg-light form-control" placeholder="Soy adınızı giriniz"> </div>
-        </div>
-        <div class="row py-2">
-            <div class="col-md-6"> <label for="email">Email Adresi</label> <input value="{{ user.email }}" type="text" class="bg-light form-control" placeholder="mail@email.com"> </div>
-            <div class="col-md-6 pt-md-0 pt-3"> <label for="phone">Telefon Numarası</label> <input value="{{ user.phoneNumber|default_if_none:'' }}" type="tel" class="bg-light form-control" placeholder="543 555 4433"> </div>
-        </div>
-
-        <div class="row py-2">
-            <div class="col-md-6"> <label >Eski Parola</label> <input type="password" class="bg-light form-control" placeholder="Eski parolanızı giriniz"> </div>
-            <div class="col-md-6 pt-md-0 pt-3"> <label>Yeni Parola</label> <input class="bg-light form-control" placeholder="Yeni parolanızı giriniz"> </div>
-        </div>
-
-        <div class="row py-2">
-            <div class="col-md-6"> <label for="country">Adreslerim</label> <select name="country" id="country" class="bg-light">
-                    {% for address in userAddress %}
-                        <option value="">{{ address }}</option>
-                    {% endfor %}
-
-
-
-                </select> </div>
-            <div class="col-md-6 pt-md-0 pt-3" id="lang"> <label for="language">Language</label>
-                <div class="arrow"> <select name="language" id="language" class="bg-light">
-                        <option value="english" selected>English</option>
-                        <option value="english_us">English (United States)</option>
-                        <option value="enguk">English UK</option>
-                        <option value="arab">Arabic</option>
-                    </select> </div>
-            </div>
-        </div>
-        <div class="py-3 pb-4 border-bottom"> <button class="btn btn-primary mr-3"><i class="fa fa-floppy-o" aria-hidden="true"></i> Kaydet</button></div>
-        <div class="d-sm-flex align-items-center pt-3" id="deactivate">
-            <div> <b>Hesabımı Kapat</b>
-                <p>Hesabınızı silerseniz kayıtlı olan tüm verileriniz silinecektir</p>
-            </div>
-            <div class="ml-auto"> <button class="btn danger"><i class="fa fa-trash" aria-hidden="true"></i> Hesabımı Sil</button> </div>
-        </div>
-    </div>
+{% include 'includes/navbar.html' %}
+{% if messages %}
+{% for message in messages %}
+<div{% if message.tags %} class="alert alert-{{ message.tags }} m-3 p-3 rounded"{% endif %}><i
+   class="fa fa-check" aria-hidden="true"></i> {{ message }}</div>
+{% endfor %}
+{% endif %}
+<div class="wrapper bg-white mt-sm-5">
+<h4 class="pb-4 border-bottom">Profil Ayarları</h4>
+<div class="d-flex align-items-start py-3 border-bottom">
+   <img
+      src="https://images.pexels.com/photos/1037995/pexels-photo-1037995.jpeg?auto=compress&cs=tinysrgb&dpr=1&w=500"
+      class="img" alt="">
+   <div class="pl-sm-4 pl-2" id="img-section">
+      <b>Profil Fotoğrafı Yükle</b>
+      <p>En fazla 1MB boyutunda fotoğraf yükleyebilirsiniz.</p>
+      <button class="btn button border"><b><i class="fa fa-folder-open-o" aria-hidden="true"></i> Yükle</b>
+      </button>
+   </div>
 </div>
+<div class="py-2">
+   <div class="row py-2">
+      <div class="col-md-6"><label for="firstname">İsim</label> <input value="{{ user.first_name }}" type="text"
+         class="bg-light form-control"
+         placeholder="Adınızı giriniz"></div>
+      <div class="col-md-6 pt-md-0 pt-3"><label for="lastname">Soy isim</label> <input
+         value="{{ user.last_name }}" type="text" class="bg-light form-control"
+         placeholder="Soy adınızı giriniz"></div>
+   </div>
+   <div class="row py-2">
+      <div class="col-md-6"><label for="email">Email Adresi</label> <input value="{{ user.email }}" type="text"
+         class="bg-light form-control"
+         placeholder="mail@email.com"></div>
+      <div class="col-md-6 pt-md-0 pt-3"><label for="phone">Telefon Numarası</label> <input
+         value="{{ user.phoneNumber|default_if_none:'' }}" type="tel" class="bg-light form-control"
+         placeholder="543 555 4433"></div>
+   </div>
+   <div class="row py-2">
+      <div class="col-md-6"><label>Eski Parola</label> <input type="password" class="bg-light form-control"
+         placeholder="Eski parolanızı giriniz"></div>
+      <div class="col-md-6 pt-md-0 pt-3"><label>Yeni Parola</label> <input class="bg-light form-control"
+         placeholder="Yeni parolanızı giriniz">
+      </div>
+   </div>
+   <div class="row py-2">
+      <div class="col-md-6">
+         <label for="country">Adreslerim</label>
+         <select name="country" id="country"
+            class="bg-light">
+            {% for address in userAddress %}
+            <option value="">{{ address }}</option>
+            {% endfor %}
+         </select>
+      </div>
 
+      <div class="py-3 pb-4 border-bottom">
 
-
+         <button class="btn btn-primary btn-block mr-3"><i class="fa fa-floppy-o" aria-hidden="true"></i><a
+                 href="" style="text-decoration: none;color:white"> Kaydet</a></button>
+      </div>
+      <div class="d-sm-flex align-items-center pt-3" id="deactivate">
+         <div>
+            <b>Hesabımı Kapat</b>
+            <p>Hesabınızı silerseniz kayıtlı olan tüm verileriniz silinecektir</p>
+         </div>
+         <div class="ml-auto">
+            <button class="btn danger"><i class="fa fa-trash" aria-hidden="true"></i> Hesabımı Sil</button>
+         </div>
+      </div>
+   </div>
+</div>
 {% endblock BODY %}

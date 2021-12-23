@@ -72,7 +72,7 @@ def v_checkout(request):
 
 def v_profile(request):
     user=CustomUserModel.objects.filter(id=request.user.id)
-    userAddress=AddressModel.objects.filter(id=request.user.id)
+    userAddress=AddressModel.objects.filter(customer=request.user)
     print(userAddress)
     return render(request,"profile.html",{"user":user[0],"userAddress":userAddress})
 
