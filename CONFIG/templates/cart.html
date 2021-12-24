@@ -30,8 +30,9 @@
                             {{ products |length }}
                         </strong></h5></th>
                         <th><h5>Toplam: <strong>₺ {{ total }}</strong></h5></th>
-                        <th>
+                        <th>{% if products %}
                             <a style="float: right;margin:5px" class="btn btn-success" href="{% url 'checkout' %}"><i class="fa fa-credit-card" aria-hidden="true"></i> Ödeme Yap</a>
+                            {% endif %}
                         </th>
                     </tr>
                 </table>
