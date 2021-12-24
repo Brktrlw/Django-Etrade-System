@@ -46,7 +46,7 @@
             <button class="btn btn-primary" style="width: 30%"><a href="#" style="text-decoration: none;color: white"><i class="fa fa-list-alt" aria-hidden="true"></i> Detaylar</a></button>
             <button class="btn btn-info" style="display: inline-block;float: right;width: 25%;">
             <strong>₺ {{ product.productPrice }}</strong></button>
-            <button class="btn btn-outline-danger" style="width: 10%"><i class="fa fa-heart"
+            <button class="btn btn-outline-danger update-favorite" style="width: 10%" data-product="{{ product.id }}" data-action="add"><i class="fa fa-heart"
                aria-hidden="true"></i></button>
          </div>
       </div>

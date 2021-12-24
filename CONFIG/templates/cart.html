@@ -45,7 +45,7 @@
                     <div style="flex: 1"><strong>Adet</strong></div>
                     <div style="flex: 1"><strong>Toplam</strong></div>
                 </div>
-
+                {% if products %}
                 <!-- Ürün Başlangıcı-->
                 {% for product_ in products %}
                     <div class="cart-row">
@@ -65,7 +65,13 @@
                             {% endwith %}
                         </h3></strong></div>
                     </div>
-                {% endfor %}
+                    {% endfor %}
+                    {% else %}
+                    <div class="bg bg-danger text-center p-3 mb-2" style="border-radius: 20px">
+                    <h3 class="text-dark">Sepetinizde Hiç Ürün Yok.</h3>
+                        <a href="{% url 'products' %}" class="btn btn-primary" style="border-radius: 10px"><i class="fa fa-arrow-left" aria-hidden="true"></i> Alışverişe Devam Et</a>
+                    </div>
+                 {% endif %}
                <!-- Ürün Bitişi-->
 
 

@@ -118,3 +118,28 @@ def f_update_cart(request):
 
     return JsonResponse("asdf",safe=False)
 
+def f_update_favorites(request):
+    data = json.loads(request.body)
+    productId = data['productId']
+    action = data["action"]
+    if action=="add":
+        try:
+            # eğer ürünü veritabanında bulursa try blogu calısacak
+            favItem=FavoriteModel.objects.get(customer_id=request.user.id,product_id=productId)
+            messages.error(request, "Ürün zaten favorilerinizdedir.")
+        except:
+            #ürünü bulamazsa except kısmı çalışarak veritabanına favori kaydediyor.
+            newFavItem=FavoriteModel.objects.create(customer_id=request.user.id,product_id=productId)
+            newFavItem.save()
+            messages.success(request, "Ürün başarıyla favorilerinize eklenmiştir")
+    elif action=="remove":
+        favItem=FavoriteModel.objects.get(customer_id=request.user.id,product_id=productId)
+        favItem.delete()
+        messages.success(request,"Ürün başarıyla favorilerinizden kaldırılmıştır.")
+
+
+
+
+
+
+    return JsonResponse("asdfa",safe=False)
