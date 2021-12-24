@@ -12,6 +12,7 @@
         <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css">
         <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.css">
         <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css" rel="stylesheet">
+        <link rel="stylesheet" href="{% static 'css/productsCSS.css' %}">
 {% endblock %}
 {% block BODY %}
     {% include 'includes/navbar.html' %}
@@ -32,7 +33,7 @@
         <!-- ÜRÜN BİLGİLERİNİN BAŞLANGICI -->
         {% for favorite in favorites %}
 
-            <div class="row p-2 bg-white border rounded mt-2 shadow p-4 mb-0 rounded">
+            <div class="row p-2 bg-white border rounded mt-2 shadow p-4 mb-0 rounded" id="product-id-{{ favorite.product.id }}">
                 <div class="col-md-3 mt-1 ">
                     <img class="img-fluid img-responsive rounded product-image" src="{{ favorite.product.productImage.url }}"></div>
                 <div class="col-md-6 mt-1 ">

@@ -126,20 +126,19 @@ def f_update_favorites(request):
         try:
             # eğer ürünü veritabanında bulursa try blogu calısacak
             favItem=FavoriteModel.objects.get(customer_id=request.user.id,product_id=productId)
-            messages.error(request, "Ürün zaten favorilerinizdedir.")
+            return JsonResponse("Ürün zaten favorilerinizdedir", safe=False)
         except:
             #ürünü bulamazsa except kısmı çalışarak veritabanına favori kaydediyor.
             newFavItem=FavoriteModel.objects.create(customer_id=request.user.id,product_id=productId)
             newFavItem.save()
-            messages.success(request, "Ürün başarıyla favorilerinize eklenmiştir")
+            return JsonResponse("Ürün başarıyla favorilerinize eklenmiştir",safe=False)
     elif action=="remove":
         favItem=FavoriteModel.objects.get(customer_id=request.user.id,product_id=productId)
         favItem.delete()
-        messages.success(request,"Ürün başarıyla favorilerinizden kaldırılmıştır.")
 
 
 
 
 
 
-    return JsonResponse("asdfa",safe=False)
+    return JsonResponse("Ürün başarıyla favorilerinizden kaldırılmıştır",safe=False)

@@ -27,9 +27,18 @@ for (i = 0; i < updateBtns.length; i++) {
                 return response.json()
             })
 
-            .then((data) => {
-                console.log('data:',data)
-                location.reload()
+            .then((data) => {console.log('data:',data)
+                var message = document.createElement("div")
+                    document.body.appendChild(message);
+                message.id = "product-added-succesfuly"
+                message.className="alert alert-success m-3 p-3 rounded"
+                message.innerHTML = data;
+                setTimeout(() => {
+                    message.classList.add("closing-effect")
+
+                },1000)
+                var favItem=document.getElementById("product-id-"+productId)
+                favItem.remove()
             })
     }
 }
