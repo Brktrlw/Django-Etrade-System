@@ -23,7 +23,8 @@ class AddressModel(models.Model):
 
     def __str__(self):
         return self.addressTitle
-
+    class Meta:
+        db_table = 'Address'
 
 class FavoriteModel(models.Model):
     customer = models.ForeignKey(CustomUserModel, on_delete=models.CASCADE, verbose_name="Müşteri")
@@ -31,7 +32,8 @@ class FavoriteModel(models.Model):
 
     def __str__(self):
         return str(self.product)
-
+    class Meta:
+        db_table = 'Favorites'
 
 class CartModel(models.Model):
     customer = models.ForeignKey(CustomUserModel, on_delete=models.SET_NULL, verbose_name="Müşteri", null=True)
@@ -40,3 +42,5 @@ class CartModel(models.Model):
 
     def __str__(self):
         return str(self.product)
+    class Meta:
+        db_table = 'Cart'

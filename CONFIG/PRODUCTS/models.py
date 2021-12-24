@@ -1,11 +1,11 @@
 from django.db import models
 
-
-
 class ProductCategorieModel(models.Model):
     categorieTitle = models.CharField(max_length=50,verbose_name="Kategori İsmi")
     def __str__(self):
         return self.categorieTitle
+    class Meta:
+        db_table = 'Categories'
 
 class ProductModel(models.Model):
     productTitle = models.CharField(max_length=50, verbose_name="Ürün İsmi")
@@ -17,6 +17,9 @@ class ProductModel(models.Model):
     def __str__(self):
         return self.productTitle
 
+    class Meta:
+        db_table = 'Products'
+
 class ProductCommentsModel(models.Model):
     customer    = models.ForeignKey("USERAPP.CustomUserModel",verbose_name="Müşteri İsmi",on_delete=models.CASCADE,default="")
     createdDate  = models.DateTimeField(auto_now_add=True,verbose_name="Oluşturulma Tarihi")
@@ -25,7 +28,8 @@ class ProductCommentsModel(models.Model):
 
     def __str__(self):
         return self.commentText
-
+    class Meta:
+        db_table = 'Comments'
 
 
 

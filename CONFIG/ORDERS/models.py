@@ -13,6 +13,9 @@ class OrderModel(models.Model):
     def __str__(self):
         return str(self.id)
 
+    class Meta:
+        db_table = 'Orders'
+
 class OrderItemModel(models.Model):
     product = models.ForeignKey(ProductModel, on_delete=models.SET_NULL, null=True, verbose_name="Ürün")
     order = models.ForeignKey(OrderModel, on_delete=models.SET_NULL, null=True, verbose_name="Sipariş")
@@ -20,4 +23,6 @@ class OrderItemModel(models.Model):
 
     def __str__(self):
         return str(self.product)
-# Create your models here.
+    class Meta:
+        db_table = 'Order_Items'
+
