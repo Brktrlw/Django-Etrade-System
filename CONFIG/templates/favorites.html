@@ -26,6 +26,8 @@
     <div class="container" style="padding-top: 5px">
     <div class="alert alert-danger shadow p-5 mb-0 rounded" style="margin:20px">
 
+        {% if favorites %}
+
 
         <!-- ÜRÜN BİLGİLERİNİN BAŞLANGICI -->
         {% for favorite in favorites %}
@@ -76,8 +78,13 @@
             </div>
             <br>
         {% endfor %}
+            {% else %}
+            <h3 class="text-center"> Hiç Favori Ürününüz Bulunmuyor</h3>
+            <div class="text-center"><br>
+            <button class="btn btn-primary"><a href="{% url 'products' %}" style="text-decoration: none;color: white">Alışverişe Devam Et</a></button>
+            </div>
             <!-- ÜRÜN BİLGİLERİNİN BİTİŞİ -->
-
+        {% endif %}
             </div>
 </div>
 {% endblock BODY %}

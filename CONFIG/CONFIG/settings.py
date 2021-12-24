@@ -29,7 +29,7 @@ INSTALLED_APPS = [
     'PRODUCTS',
     'django_cleanup',
     'mathfilters',
-    'ORDERS'
+    'ORDERS',
 ]
 
 MIDDLEWARE = [
