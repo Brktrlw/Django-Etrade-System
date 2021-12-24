@@ -1,5 +1,5 @@
 from django.db import models
-from django.contrib.auth.models import User
+
 
 
 class ProductCategorieModel(models.Model):
@@ -16,6 +16,22 @@ class ProductModel(models.Model):
     productCategorie = models.ManyToManyField(ProductCategorieModel,verbose_name="Kategori")
     def __str__(self):
         return self.productTitle
+
+class ProductCommentsModel(models.Model):
+    customer    = models.ForeignKey("USERAPP.CustomUserModel",verbose_name="Müşteri İsmi",on_delete=models.CASCADE,default="")
+    createdDate  = models.DateTimeField(auto_now_add=True,verbose_name="Oluşturulma Tarihi")
+    product      = models.ForeignKey(ProductModel,verbose_name="Ürün adı",on_delete=models.CASCADE)
+    commentText  = models.TextField(max_length=250,verbose_name="Yorum",default=None)
+
+    def __str__(self):
+        return self.commentText
+
+
+
+
+
+
+
 
 
 
