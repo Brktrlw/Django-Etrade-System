@@ -7,5 +7,6 @@ urlpatterns = [
     path("sepetim/",views.v_cart,name="cart"),
     path("checkout/",views.v_checkout,name="checkout"),
     path("favorilerim/",views.v_favorites,name="favorites"),
-    path("profile/",views.v_profile,name="profile")
+    path("profile/",views.v_profile,name="profile"),
+    path("update_item/",views.f_update_item,name="update_item")
 ]

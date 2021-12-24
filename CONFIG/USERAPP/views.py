@@ -4,7 +4,9 @@ from django.contrib.auth import authenticate, login
 from django.contrib.auth.models import User
 from django.contrib import messages
 from USERAPP.models import CartModel,FavoriteModel,AddressModel,CustomUserModel
-
+from django.http import JsonResponse
+import json
+from PRODUCTS.models import ProductModel
 def v_register(request):
     form = RegisterForm(request.POST or None)
 
@@ -69,13 +71,29 @@ def v_checkout(request):
 
     return render(request,"checkout.html",{"products":products,"total":total,"form":form,"customerAddress":customerAddress})
 
-
 def v_profile(request):
     user=CustomUserModel.objects.filter(id=request.user.id)
     userAddress=AddressModel.objects.filter(customer=request.user)
     print(userAddress)
     return render(request,"profile.html",{"user":user[0],"userAddress":userAddress})
 
+def f_update_item(request):
+    data=json.loads(request.body)
+    productId=data['productId']
+    action=data['action']
+    _customer=request.user
+
+    product = ProductModel.objects.filter(id=productId)
+    cartItem=CartModel.objects.filter(customer=_customer).filter(product_id=productId)
+
+    if not cartItem:
+        cartItem=CartModel.objects.create(product_id=productId,customer=_customer,amount=1)
+        cartItem.save()
+    else:
+        cartItem=CartModel.objects.get(customer=_customer,product_id=productId)
+        cartItem.amount+=1
+        cartItem.save()
+    return JsonResponse('Item was added',safe=False)
 
 
 

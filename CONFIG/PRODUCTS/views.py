@@ -27,5 +27,3 @@ def v_products(request):
 
 
 
-
-
