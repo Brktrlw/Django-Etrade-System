@@ -95,8 +95,8 @@ def f_update_item(request):
         elif action=="remove":
             cartItem.amount-=1
         cartItem.save()
-    messages.success(request,str(product.productTitle)+" Sepetinize Eklendi")
-    return JsonResponse('Item was added',safe=False)
+    #messages.success(request,str(product.productTitle)+" Sepetinize Eklendi")
+    return JsonResponse('<i class="fa fa-cart-plus" aria-hidden="true"></i> '+str(product.productTitle)+' Sepetinize Eklendi',safe=False)
 
 def f_update_cart(request):
     data=json.loads(request.body)

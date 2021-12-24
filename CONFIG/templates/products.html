@@ -18,7 +18,7 @@
    <div class="row">
       {% for product in products %}
       <!-- Ürün Başlangıcı -->
-      <div class="col-lg-4" style="margin-bottom: 20px">
+      <div class="col-lg-4" id="cartItemId" style="margin-bottom: 20px">
          <img class="thumbnail" style="border-top-left-radius: 10px;border-top-right-radius: 10px"
             src="{{ product.productImage.url }}">
          <div class="box-element">
@@ -57,7 +57,7 @@
 </div>
     {% if messages %}
 {% for message in messages %}
-<div{% if message.tags %} class="alert alert-{{ message.tags }} m-3 p-3 rounded" style="position:fixed;top: 0px;left: 0px;width: %100;z-index: 9999;border-radius: 0px" {% endif %}><i class="fa fa-cart-plus" aria-hidden="true"></i> {{ message }}</div>
+<div{% if message.tags %} class="alert alert-{{ message.tags }} m-3 p-3 rounded" style="position:fixed;top: 0px;left: 0px;width: %100;z-index: 9999;border-radius: 0px" {% endif %}> {{ message }}</div>
 {% endfor %}
 {% endif %}
 {% endblock BODY %}

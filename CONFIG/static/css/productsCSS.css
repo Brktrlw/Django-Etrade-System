@@ -51,7 +51,17 @@ h1,h2,h3,h4,h5,h6{
 	border-radius: 10px;
     -webkit-box-shadow: -1px 0px 3px -1px;
 }
-
+#product-added-succesfuly{
+	position:fixed;
+	top: 0px;
+	left: 0px;
+	z-index: 9999;
+	border-radius: 0px;
+}
+.closing-effect{
+	transition: 1s;
+	opacity: 0;
+}
 .row-image{
 	width: 100px;
 }
