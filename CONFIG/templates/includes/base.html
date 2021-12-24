@@ -70,6 +70,7 @@
             integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl"
             crossorigin="anonymous"></script>
     <script src="{% static 'js/cart.js' %}"></script>
+    <script src="{% static 'js/cartUpdate.js' %}"></script>
     <script type="text/javascript">
         var user = '{{ request.user }}'
 
@@ -91,6 +92,7 @@
 
         const csrftoken = getCookie('csrftoken');
     </script>
+
     <script>
     $(document).ready(function() {
     setTimeout(function() {

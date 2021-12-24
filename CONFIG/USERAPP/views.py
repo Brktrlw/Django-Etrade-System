@@ -95,8 +95,24 @@ def f_update_item(request):
         elif action=="remove":
             cartItem.amount-=1
         cartItem.save()
-    messages.success(request,str(product.productTitle)+" Sepetinize Egithklendi")
+    messages.success(request,str(product.productTitle)+" Sepetinize Eklendi")
     return JsonResponse('Item was added',safe=False)
 
+def f_update_cart(request):
+    data=json.loads(request.body)
+    productId=data['productId']
+    action=data["action"]
+    cartItem = CartModel.objects.get(product_id=productId, customer_id=request.user.id)
+    if action=="add":
+        cartItem.amount+=1
+        cartItem.save()
+    elif action=="remove":
+        if cartItem.amount==1:
+            cartItem.delete()
+        else:
+            cartItem.amount-=1
+            cartItem.save()
 
+
+    return JsonResponse("asdf",safe=False)
 

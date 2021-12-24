@@ -1,4 +1,4 @@
-var updateBtns = document.getElementsByClassName('update-cart')
+var updateBtns = document.getElementsByClassName('update-cart-amount')
 for (i = 0; i < updateBtns.length; i++) {
     updateBtns[i].addEventListener('click', function () {
         var productId = this.dataset.product
@@ -14,7 +14,7 @@ for (i = 0; i < updateBtns.length; i++) {
 
     function updateUserOrder(productId, action) {
         console.log("Giriş yapılı ve sepete ekleniyor")
-        var url = '/user/update_item/'
+        var url = '/user/update-cart/'
         fetch(url, {
             method: 'POST',
             headers: {
@@ -34,9 +34,5 @@ for (i = 0; i < updateBtns.length; i++) {
             })
     }
 }
-
-
-
-
 
 

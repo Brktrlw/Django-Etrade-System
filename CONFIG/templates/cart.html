@@ -63,8 +63,8 @@
                         <div style="flex: 1;">
                             <p class="quantity">{{ product_.amount }} Adet</p>
                             <div class="">
-                                <button class="btn btn-success"><i class="fa fa-plus" aria-hidden="true"></i></button>
-                                <button class="btn btn-danger"><i class="fa fa-minus" aria-hidden="true"></i></button>
+                                <button class="btn btn-success update-cart-amount" data-product="{{ product_.product.id }}" data-action="add" ><i class="fa fa-plus" aria-hidden="true"></i></button>
+                                <button class="btn btn-danger update-cart-amount" data-product="{{ product_.product.id }}" data-action="remove"><i class="fa fa-minus" aria-hidden="true"></i></button>
                             </div>
                         </div>
                         <div style="flex: 1"><strong><h3>
