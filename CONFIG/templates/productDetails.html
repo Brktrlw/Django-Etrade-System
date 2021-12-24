@@ -1,0 +1,81 @@
+{% extends 'includes/base.html' %}
+
+{% block Title %}
+    <title>Ana Sayfa</title>
+{% endblock Title %}
+
+{% block BODY %}
+    {% include 'includes/navbar.html' %}
+
+
+
+   <div class="container my-0 py-5 text-dark">
+      <div class="row d-flex justify-content-center">
+         <div class="col-md-10 col-lg-8 col-xl-6">
+            <div class="card">
+               <div class="card-body p-4">
+                  <div class="d-flex flex-start w-100">
+                     <img class="rounded-circle shadow-1-strong me-3" src="https://cdn-icons-png.flaticon.com/512/2922/2922510.png" alt="avatar" width="65" height="65">&nbsp;&nbsp;
+                     <div class="w-100">
+                        <h5>Yorum Yap</h5>
+                        <br>
+                        <div class="form-outline">
+                        </div>
+                        <div class="">
+
+                           <form action="/addComment" method="POST" id="addcommentdeneme">
+                              <textarea class="form-control" name="text_message" rows="4" required=""></textarea><br>
+                              <input type="hidden" value="4" name="product_id">
+                              <button type="submit" class="btn btn-outline-success btn-block">
+                              <i class="fa fa-paper-plane" aria-hidden="true"></i> Gönder</button>
+                           </form>
+
+                        </div>
+                     </div>
+                  </div>
+               </div>
+            </div>
+         </div>
+      </div>
+      <br>
+
+
+      <div class="row d-flex justify-content-center">
+         <div class="col-md-4 col-lg-6">
+            <div class="card shadow-0 border" style="background-color: #f0f2f5;">
+               <div class="card-body p-4">
+                  <!-- Yorumun baslangıcı -->
+                  <div class="card">
+                     <div class="card-body">
+                        <p style="display:inline">Yorum İçeriği</p>
+                        <div style="float:right">
+                           <p>3/12/2021-19:28</p>
+                        </div>
+                        <div class="d-flex justify-content-between">
+                           <div class="d-flex flex-row align-items-center">
+                              <img src="https://cdn-icons-png.flaticon.com/512/2922/2922510.png" alt="avatar" width="25" height="25">
+                                 <p class="small mb-0 ms-2">brktrl</p>
+                           </div>
+
+                           <div class="d-flex flex-row align-items-center">
+
+                                 <a type="submit"><i class="fa fa-thumbs-up" aria-hidden="true" style="color:green">&nbsp;</i></a>
+                                 <p class="small text-muted mb-0">0</p>
+
+                                 <a type="submit">&nbsp;<i class="fa fa-thumbs-down" aria-hidden="true" style="color:red"></i></a>
+                                 <p class="small text-muted mb-0">0</p>
+                              &nbsp;&nbsp;&nbsp;
+                           </div>
+
+                        </div>
+                     </div>
+                  </div>
+                  <!-- Yorumun Bitişi -->
+               </div>
+            </div>
+         </div>
+      </div>
+   </div>
+</div>
+
+{% endblock BODY %}

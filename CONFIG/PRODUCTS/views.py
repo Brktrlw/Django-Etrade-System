@@ -11,6 +11,8 @@ def v_products(request):
     products = ProductModel.objects.all()
     return render(request,"products.html",{"products":products})
 
+def v_productDetail(request,productId):
+    return render(request,"productDetails.html",{"productId":productId})
 
 
 

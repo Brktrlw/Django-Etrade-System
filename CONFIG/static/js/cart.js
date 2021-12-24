@@ -37,7 +37,7 @@ for (i = 0; i < updateBtns.length; i++) {
                 setTimeout(() => {
                     message.classList.add("closing-effect")
 
-                },1000)
+                },2000)
 
             })
     }
