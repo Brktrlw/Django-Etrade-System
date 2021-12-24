@@ -83,16 +83,19 @@ def f_update_item(request):
     action=data['action']
     _customer=request.user
 
-    product = ProductModel.objects.filter(id=productId)
+    product = ProductModel.objects.get(id=productId)
     cartItem=CartModel.objects.filter(customer=_customer).filter(product_id=productId)
-
     if not cartItem:
         cartItem=CartModel.objects.create(product_id=productId,customer=_customer,amount=1)
         cartItem.save()
     else:
-        cartItem=CartModel.objects.get(customer=_customer,product_id=productId)
-        cartItem.amount+=1
+        cartItem = CartModel.objects.get(customer=_customer, product_id=productId)
+        if action=="add":
+            cartItem.amount+=1
+        elif action=="remove":
+            cartItem.amount-=1
         cartItem.save()
+    messages.success(request,str(product.productTitle)+" Sepetinize Egithklendi")
     return JsonResponse('Item was added',safe=False)
 
 

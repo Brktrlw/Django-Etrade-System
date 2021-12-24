@@ -13,12 +13,7 @@
 {% endblock CSS %}
 {% block BODY %}
 {% include 'includes/navbar.html' %}
-{% if messages %}
-{% for message in messages %}
-<div{% if message.tags %} class="alert alert-{{ message.tags }} m-3 p-3 rounded"{% endif %}><i
-   class="fa fa-check" aria-hidden="true"></i> {{ message }}</div>
-{% endfor %}
-{% endif %}
+
 <div class="container" style="margin-top: 30px">
    <div class="row">
       {% for product in products %}
@@ -60,4 +55,9 @@
    </div>
 </div>
 </div>
+    {% if messages %}
+{% for message in messages %}
+<div{% if message.tags %} class="alert alert-{{ message.tags }} m-3 p-3 rounded" style="position:fixed;top: 0px;left: 0px;width: %100;z-index: 9999;border-radius: 0px" {% endif %}><i class="fa fa-cart-plus" aria-hidden="true"></i> {{ message }}</div>
+{% endfor %}
+{% endif %}
 {% endblock BODY %}
