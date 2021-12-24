@@ -3,17 +3,14 @@ for (i = 0; i < updateBtns.length; i++) {
     updateBtns[i].addEventListener('click', function () {
         var productId = this.dataset.product
         var action = this.dataset.action
-        console.log('product ID:', productId, 'Action: ', action)
-        console.log("USER: ", user)
         if (user == "AnonymousUser") {
-            console.log("Kullanıcı giriş yapmamış")
+
         } else {
             updateUserOrder(productId, action)
         }
     })
 
     function updateUserOrder(productId, action) {
-        console.log("Giriş yapılı ve sepete ekleniyor")
         var url = '/user/update-cart/'
         fetch(url, {
             method: 'POST',
@@ -29,7 +26,6 @@ for (i = 0; i < updateBtns.length; i++) {
             })
 
             .then((data) => {
-                console.log('data:',data)
                 location.reload()
             })
     }

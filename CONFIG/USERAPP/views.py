@@ -106,13 +106,15 @@ def f_update_cart(request):
     if action=="add":
         cartItem.amount+=1
         cartItem.save()
+        messages.success(request, "Sepetiniz başarıyla güncellenmiştir")
     elif action=="remove":
         if cartItem.amount==1:
             cartItem.delete()
+            messages.success(request, "Ürün başarıyla sepetinizden kaldırılmıştır")
         else:
             cartItem.amount-=1
             cartItem.save()
-
+            messages.success(request, "Sepetiniz başarıyla güncellenmiştir")
 
     return JsonResponse("asdf",safe=False)
 
