@@ -95,8 +95,8 @@ def f_update_item(request):
         elif action=="remove":
             cartItem.amount-=1
         cartItem.save()
-    #messages.success(request,str(product.productTitle)+" Sepetinize Eklendi")
-    return JsonResponse('<i class="fa fa-cart-plus" aria-hidden="true"></i> '+str(product.productTitle)+' Sepetinize Eklendi',safe=False)
+    return JsonResponse("<div class='alert alert-success m-3 p-3 rounded'><i class='fa fa-check' aria-hidden='true'></i> Ürün Başarıyla Sepetinize Eklenmiştir</div>",safe=False)
+
 
 def f_update_cart(request):
     data=json.loads(request.body)
@@ -126,12 +126,13 @@ def f_update_favorites(request):
         try:
             # eğer ürünü veritabanında bulursa try blogu calısacak
             favItem=FavoriteModel.objects.get(customer_id=request.user.id,product_id=productId)
-            return JsonResponse("Ürün zaten favorilerinizdedir", safe=False)
+            return JsonResponse("<div class='alert alert-danger m-3 p-3 rounded'><i class='fa fa-check' aria-hidden='true'></i> Ürün zaten favorilerinizdedir</div>", safe=False)
         except:
             #ürünü bulamazsa except kısmı çalışarak veritabanına favori kaydediyor.
             newFavItem=FavoriteModel.objects.create(customer_id=request.user.id,product_id=productId)
             newFavItem.save()
-            return JsonResponse("Ürün başarıyla favorilerinize eklenmiştir",safe=False)
+            return JsonResponse("<div class='alert alert-success m-3 p-3 rounded'><i class='fa fa-check' aria-hidden='true'></i> Ürün başarıyla favorilerinize eklenmiştir.</div>", safe=False)
+
     elif action=="remove":
         favItem=FavoriteModel.objects.get(customer_id=request.user.id,product_id=productId)
         favItem.delete()

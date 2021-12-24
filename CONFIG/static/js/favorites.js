@@ -31,7 +31,6 @@ for (i = 0; i < updateBtns.length; i++) {
                 var message = document.createElement("div")
                     document.body.appendChild(message);
                 message.id = "product-added-succesfuly"
-                message.className="alert alert-success m-3 p-3 rounded"
                 message.innerHTML = data;
                 setTimeout(() => {
                     message.classList.add("closing-effect")
