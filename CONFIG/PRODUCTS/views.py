@@ -13,9 +13,9 @@ def v_products(request):
     cartAmount = CartModel.objects.filter(customer_id=request.user.id)
     return render(request,"products.html",{"products":products})
 
-def v_productDetail(request,productId):
+def v_productDetail(request,slug):
     try:
-        product  = ProductModel.objects.get(id=productId)
+        product  = ProductModel.objects.get(slug=slug)
     except:
         return HttpResponse("Böyle bir sayfa bulunamadı")
     try:
