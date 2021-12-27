@@ -1,6 +1,7 @@
 from django.shortcuts import render,HttpResponse
 from PRODUCTS.models import ProductModel,ProductCategorieModel,ProductCommentsModel
 from USERAPP.models import CartModel
+from .forms import CommentForm
 
 def v_CategorieProducts(request,catTitle):
     cats=ProductCategorieModel.objects.filter(categorieTitle=catTitle)
@@ -21,6 +22,13 @@ def v_productDetail(request,productId):
         comments = ProductCommentsModel.objects.filter(product=product)
     except:
         comments=None
+    commentForm=CommentForm(request.POST or None)
+    if commentForm.is_valid():
+        comment=commentForm.save(commit=False)
+        comment.customer=request.user
+        comment.commentText=commentForm.cleaned_data.get("commentText")
+        comment.product=product
+        comment.save()
     return render(request,"productDetails.html",{"product":product,"comments":comments})
 
 

@@ -7,13 +7,6 @@
 {% block BODY %}
     {% include 'includes/navbar.html' %}
 
-
-
-
-
-
-
-
    <div class="container my-0 py-5 text-dark">
       <div class="row d-flex justify-content-center">
          <div class="col-md-10 col-lg-8 col-xl-6">
@@ -35,9 +28,9 @@
                         </div>
                         <div class="">
 
-                           <form action="/addComment" method="POST" id="addcommentdeneme">
-                              <textarea class="form-control" name="text_message" rows="4" required=""></textarea><br>
-                              <input type="hidden" value="4" name="product_id">
+                           <form action="{% url 'ProductDetails' product.id %}" method="POST">
+                               {% csrf_token %}
+                              <textarea class="form-control" name="commentText" rows="4" required=""></textarea><br>
                               <button type="submit" class="btn btn-outline-success btn-block">
                               <i class="fa fa-paper-plane" aria-hidden="true"></i> Gönder</button>
                            </form>
@@ -56,6 +49,8 @@
          <div class="col-md-4 col-lg-6">
             <div class="card shadow-0 border" style="background-color: #f0f2f5;">
                <div class="card-body p-4">
+                    {% if  comments %}
+
 
                   <!-- Yorumun baslangıcı -->
                    {% for comment in comments %}
@@ -85,6 +80,9 @@
                      </div>
                   </div>
                    {% endfor %}
+                        {% else %}
+                        <div class="text-center bg bg-danger" style="border-radius: 30px;padding:10px">Bu ürüne hiç yorum yapılmamış.</div>
+                {% endif %}
                   <!-- Yorumun Bitişi -->
                </div>
             </div>
