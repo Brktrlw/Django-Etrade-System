@@ -26,7 +26,15 @@ for (i = 0; i < updateBtns.length; i++) {
             })
 
             .then((data) => {
-                location.reload()
+                var cartItem=document.getElementById("product-id-"+productId)
+                cartItem.remove()
+                var message = document.createElement("div")
+                document.body.appendChild(message);
+                message.id = "favorite-product-delete"
+                message.innerHTML = data;
+                setTimeout(() => {
+                    message.classList.add("closing-effect")
+                }, 3000)
             })
     }
 }
