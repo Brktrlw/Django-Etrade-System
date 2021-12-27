@@ -7,7 +7,7 @@ from USERAPP.models import CartModel, FavoriteModel, AddressModel, CustomUserMod
 from django.http import JsonResponse
 import json
 from PRODUCTS.models import ProductModel
-
+from ORDERS.forms import OrderForm
 
 def v_register(request):
     form = RegisterForm(request.POST or None)
@@ -40,11 +40,9 @@ def v_login(request):
 
     return render(request, "loginPage.html", {"form": form})
 
-
 def v_favorites(request):
     favorites = FavoriteModel.objects.filter(customer=request.user)
     return render(request, "favorites.html", {"favorites": favorites})
-
 
 def v_cart(request):
     products = CartModel.objects.filter(customer=request.user)
@@ -53,15 +51,12 @@ def v_cart(request):
         total += product_.amount * product_.product.productPrice
     return render(request, "cart.html", {"products": products, "total": total})
 
-
 def v_checkout(request):
     # Address eklendiğinde çalışan blok
-    form = AddressForm(request.POST or None)
+    form = OrderForm(request.POST or None)
     if form.is_valid():
         address = form.save(commit=False)
         address.addressTitle = form.cleaned_data.get("addressTitle")
-        address.addressCity = form.cleaned_data.get("addressCity")
-        address.addressText = form.cleaned_data.get("addressText")
         address.customer = request.user
         address.save()
         messages.success(request, "Address Başarıyla Eklendi")
@@ -94,7 +89,6 @@ def v_profile(request):
 
     return render(request, "profile.html", {"user": user[0], "userAddress": userAddress,"adresForm": adresForm})
 
-
 def f_update_item(request):
     data = json.loads(request.body)
     productId = data['productId']
@@ -117,7 +111,6 @@ def f_update_item(request):
         "<div class='alert alert-success m-3 p-3 rounded'><i class='fa fa-check' aria-hidden='true'></i> Ürün Başarıyla Sepetinize Eklenmiştir</div>",
         safe=False)
 
-
 def f_update_cart(request):
     data = json.loads(request.body)
     productId = data['productId']
@@ -137,7 +130,6 @@ def f_update_cart(request):
             messages.success(request, "Sepetiniz başarıyla güncellenmiştir")
 
     return JsonResponse("asdf", safe=False)
-
 
 def f_update_favorites(request):
     data = json.loads(request.body)
