@@ -25,7 +25,6 @@ def v_register(request):
 
     return render(request, "registerPage.html", {"form": form})
 
-
 def v_login(request):
     form = LoginForm(request.POST or None)
     if form.is_valid():
@@ -82,8 +81,18 @@ def v_checkout(request):
 def v_profile(request):
     user = CustomUserModel.objects.filter(id=request.user.id)
     userAddress = AddressModel.objects.filter(customer=request.user)
-    print(userAddress)
-    return render(request, "profile.html", {"user": user[0], "userAddress": userAddress})
+    adresForm= AddressForm(request.POST or None)
+    if adresForm.is_valid():
+        address = adresForm.save(commit=False)
+        address.addressTitle = adresForm.cleaned_data.get("addressTitle")
+        address.addressCity = adresForm.cleaned_data.get("addressCity")
+        address.addressText = adresForm.cleaned_data.get("addressText")
+        address.customer = request.user
+        address.save()
+        messages.success(request, "Address Başarıyla Eklendi")
+        return redirect("profile")
+
+    return render(request, "profile.html", {"user": user[0], "userAddress": userAddress,"adresForm": adresForm})
 
 
 def f_update_item(request):
