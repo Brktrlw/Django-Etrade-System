@@ -38,7 +38,7 @@ for (i = 0; i < updateBtns.length; i++) {
                 },2000)
                 var favItem=document.getElementById("product-id-"+productId)
                 favItem.remove()
-
+                message.remove()
             })
     }
 }
