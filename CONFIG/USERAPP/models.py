@@ -10,6 +10,8 @@ class CustomUserModel(AbstractUser):
 
     class Meta:
         db_table = "auth_user"
+        verbose_name_plural="Kullanıcılar"
+
 
     def __str__(self):
         return self.username
@@ -25,6 +27,8 @@ class AddressModel(models.Model):
         return self.addressTitle
     class Meta:
         db_table = 'Address'
+        verbose_name_plural="Adresler"
+
 
 class FavoriteModel(models.Model):
     customer = models.ForeignKey(CustomUserModel, on_delete=models.CASCADE, verbose_name="Müşteri")
@@ -34,6 +38,8 @@ class FavoriteModel(models.Model):
         return str(self.product)
     class Meta:
         db_table = 'Favorites'
+        verbose_name_plural="Favoriler"
+
 
 class CartModel(models.Model):
     customer = models.ForeignKey(CustomUserModel, on_delete=models.SET_NULL, verbose_name="Müşteri", null=True)
@@ -44,3 +50,5 @@ class CartModel(models.Model):
         return str(self.product)
     class Meta:
         db_table = 'Cart'
+        verbose_name_plural="Sepet"
+

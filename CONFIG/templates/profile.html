@@ -20,55 +20,60 @@
 {% endfor %}
 {% endif %}
 <div class="wrapper bg-white mt-sm-5">
-   <h4 class="pb-4 border-bottom">Profil Ayarları</h4>
-   <div class="d-flex align-items-start py-3 border-bottom">
-      <img
-         src="https://images.pexels.com/photos/1037995/pexels-photo-1037995.jpeg?auto=compress&cs=tinysrgb&dpr=1&w=500"
-         class="img" alt="">
-      <div class="pl-sm-4 pl-2" id="img-section">
-         <b>Profil Fotoğrafı Yükle</b>
-         <p>En fazla 1MB boyutunda fotoğraf yükleyebilirsiniz.</p>
-         <button class="btn button border"><b><i class="fa fa-folder-open-o" aria-hidden="true"></i> Yükle</b>
-         </button>
+<h4 class="pb-4 border-bottom">Profil Ayarları</h4>
+<div class="d-flex align-items-start py-3 border-bottom">
+   <img
+      src="https://images.pexels.com/photos/1037995/pexels-photo-1037995.jpeg?auto=compress&cs=tinysrgb&dpr=1&w=500"
+      class="img" alt="">
+   <div class="pl-sm-4 pl-2" id="img-section">
+      <b>Profil Fotoğrafı Yükle</b>
+      <p>En fazla 1MB boyutunda fotoğraf yükleyebilirsiniz.</p>
+      <button class="btn button border"><b><i class="fa fa-folder-open-o" aria-hidden="true"></i> Yükle</b>
+      </button>
+   </div>
+</div>
+<div class="py-2">
+   <div class="row py-2">
+      <div class="col-md-6"><label for="firstname">İsim</label> <input value="{{ user.first_name }}" type="text"
+         class="bg-light form-control"
+         placeholder="Adınızı giriniz"></div>
+      <div class="col-md-6 pt-md-0 pt-3"><label for="lastname">Soy isim</label> <input
+         value="{{ user.last_name }}" type="text" class="bg-light form-control"
+         placeholder="Soy adınızı giriniz"></div>
+   </div>
+   <div class="row py-2">
+      <div class="col-md-6"><label for="email">Email Adresi</label> <input value="{{ user.email }}" type="text"
+         class="bg-light form-control"
+         placeholder="mail@email.com"></div>
+      <div class="col-md-6 pt-md-0 pt-3"><label for="phone">Telefon Numarası</label> <input
+         value="{{ user.phoneNumber|default_if_none:'' }}" type="tel" class="bg-light form-control"
+         placeholder="543 555 4433"></div>
+   </div>
+   <div class="row py-2">
+      <div class="col-md-6"><label>Eski Parola</label> <input type="password" class="bg-light form-control"
+         placeholder="Eski parolanızı giriniz"></div>
+      <div class="col-md-6 pt-md-0 pt-3"><label>Yeni Parola</label> <input class="bg-light form-control"
+         placeholder="Yeni parolanızı giriniz">
       </div>
    </div>
-   <div class="py-2">
-      <div class="row py-2">
-         <div class="col-md-6"><label for="firstname">İsim</label> <input value="{{ user.first_name }}" type="text"
-            class="bg-light form-control"
-            placeholder="Adınızı giriniz"></div>
-         <div class="col-md-6 pt-md-0 pt-3"><label for="lastname">Soy isim</label> <input
-            value="{{ user.last_name }}" type="text" class="bg-light form-control"
-            placeholder="Soy adınızı giriniz"></div>
+   <div class="row py-2">
+      <div class="col-md-6">
+         <label for="country">Adreslerim</label>
+         <select name="country" id="country"
+            class="bg-light">
+            {% for address in userAddress %}
+            <option data-address="{{ address.id }}" value="{{ address.id }}">{{ address }}</option>
+            {% endfor %}
+         </select>
       </div>
-      <div class="row py-2">
-         <div class="col-md-6"><label for="email">Email Adresi</label> <input value="{{ user.email }}" type="text"
-            class="bg-light form-control"
-            placeholder="mail@email.com"></div>
-         <div class="col-md-6 pt-md-0 pt-3"><label for="phone">Telefon Numarası</label> <input
-            value="{{ user.phoneNumber|default_if_none:'' }}" type="tel" class="bg-light form-control"
-            placeholder="543 555 4433"></div>
+      <div class="col-md-6 pt-4">
+        <div class="row">
+      <div class="col-md-6"><button type="button" class="btn btn-primary" data-toggle="modal" data-target="#addAddress"><i class="fa fa-plus" aria-hidden="true"></i> Adres Ekle</button>
+</div>
+      <div class="col-md-6"><button type="button" class="btn btn-danger" data-toggle="modal" data-target="#deleteAddress"><i class="fa fa-trash" aria-hidden="true"></i> Adres Sil</button>
       </div>
-      <div class="row py-2">
-         <div class="col-md-6"><label>Eski Parola</label> <input type="password" class="bg-light form-control"
-            placeholder="Eski parolanızı giriniz"></div>
-         <div class="col-md-6 pt-md-0 pt-3"><label>Yeni Parola</label> <input class="bg-light form-control"
-            placeholder="Yeni parolanızı giriniz">
-         </div>
-      </div>
-      <div class="row py-2">
-         <div class="col-md-6">
-            <label for="country">Adreslerim</label>
-            <select name="country" id="country"
-               class="bg-light">
-               {% for address in userAddress %}
-               <option value="">{{ address }}</option>
-               {% endfor %}
-            </select>
-         </div>
-         <div class="col-md-6 pt-4">
-             <button type="button" class="btn btn-primary btn-block mr-3" data-toggle="modal" data-target="#addAddress"><i class="fa fa-plus" aria-hidden="true"></i> Adres Ekle</button>
-         </div>
+   </div>
+
       </div>
       <div class="py-3 pb-4 border-bottom">
          <button class="btn btn-primary btn-block mr-3"><i class="fa fa-floppy-o"></i><a
@@ -86,26 +91,47 @@
    </div>
 </div>
 
-
-    <div class="modal fade" id="addAddress" tabindex="-1" role="dialog" aria-labelledby="addAddressLabel" aria-hidden="true">
+    <!-- DELETE ADDRESS MODAL -->
+<div class="modal fade" id="deleteAddress" tabindex="-1" role="dialog" aria-hidden="true">
   <div class="modal-dialog" role="document">
     <div class="modal-content">
       <div class="modal-header">
-        <h5 class="modal-title" id="exampleModalLabel">Adres Ekle</h5>
+        <h5 class="modal-title">Adres Sil</h5>
         <button type="button" class="close" data-dismiss="modal" aria-label="Close">
           <span aria-hidden="true">&times;</span>
         </button>
       </div>
       <div class="modal-body">
-        <form action="{% url 'profile' %}" method="post">
+        Adresi Silmek İstediğinizden Emin Misiniz?
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-secondary" data-dismiss="modal">Vazgeç</button>
+        <button type="button" class="btn btn-outline-danger"><i class="fa fa-trash" aria-hidden="true"></i> Sil</button>
+      </div>
+    </div>
+  </div>
+</div>
+
+
+<div class="modal fade" id="addAddress" tabindex="-1" role="dialog" aria-hidden="true">
+<div class="modal-dialog" role="document">
+   <div class="modal-content">
+      <div class="modal-header">
+         <h5 class="modal-title">Adres Ekle</h5>
+         <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+         <span aria-hidden="true">&times;</span>
+         </button>
+      </div>
+      <div class="modal-body">
+         <form action="{% url 'profile' %}" method="post">
             {{ adresForm }}
             {% csrf_token %}
-      <div class="modal-footer">
-        <button type="button" class="btn btn-secondary" data-dismiss="modal">Kapat</button>
-        <button type="submit" class="btn btn-success"> Adres Ekle</button>
+            <div class="modal-footer">
+               <button type="button" class="btn btn-secondary" data-dismiss="modal">Kapat</button>
+               <button type="submit" class="btn btn-success"> Adres Ekle</button>
+            </div>
+         </form>
       </div>
-        </form>
-      </div>
-  </div>
+   </div>
 </div>
 {% endblock BODY %}

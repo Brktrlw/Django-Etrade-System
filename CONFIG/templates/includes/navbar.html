@@ -39,13 +39,8 @@
        <ul class="navbar-nav mr-auto">
           <button class="btn btn-outline-success"><a href="{% url 'cart' %}"
              style="text-decoration: none;color: white"><i class="fa"
-             style="font-size:24px">&#xf07a;&nbsp;</i><span
-             class='badge badge-warning' id='lblCartCount'>
-          {% if products|length == 0 %}
-              BOŞ
-          {% else %}
-              {{ products|length }}
-          {% endif %}
+             style="font-size:24px">&#xf07a;&nbsp;</i>
+
           </span> Sepetim</a></button>&nbsp;
           <div class="btn-group">
              <button type="button" class="btn btn-primary dropdown-toggle" data-toggle="dropdown"

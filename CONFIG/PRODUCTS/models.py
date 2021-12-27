@@ -6,6 +6,8 @@ class ProductCategorieModel(models.Model):
         return self.categorieTitle
     class Meta:
         db_table = 'Categories'
+        verbose_name_plural="Kategoriler"
+
 
 class ProductModel(models.Model):
     productTitle = models.CharField(max_length=50, verbose_name="Ürün İsmi")
@@ -19,9 +21,10 @@ class ProductModel(models.Model):
 
     class Meta:
         db_table = 'Products'
+        verbose_name_plural="Ürünler"
 
 class ProductCommentsModel(models.Model):
-    customer    = models.ForeignKey("USERAPP.CustomUserModel",verbose_name="Müşteri İsmi",on_delete=models.CASCADE,default="")
+    customer     =  models.ForeignKey("USERAPP.CustomUserModel",verbose_name="Müşteri İsmi",on_delete=models.CASCADE,default="")
     createdDate  = models.DateTimeField(auto_now_add=True,verbose_name="Oluşturulma Tarihi")
     product      = models.ForeignKey(ProductModel,verbose_name="Ürün adı",on_delete=models.CASCADE)
     commentText  = models.TextField(max_length=250,verbose_name="Yorum",default=None)
@@ -30,6 +33,8 @@ class ProductCommentsModel(models.Model):
         return self.commentText
     class Meta:
         db_table = 'Comments'
+        verbose_name_plural="Ürün Yorumları"
+
 
 
 
