@@ -16,25 +16,19 @@ for (i = 0; i < updateBtns.length; i++) {
             method: 'POST',
             headers: {
                 'Content-Type': 'application/json',
-                'X-CSRFToken':csrftoken
+                'X-CSRFToken': csrftoken
             },
             body: JSON.stringify({'productId': productId, 'action': action})
         })
 
-            .then((response) =>{
+            .then((response) => {
                 return response.json()
             })
 
             .then((data) => {
-                var cartItem=document.getElementById("product-id-"+productId)
-                cartItem.remove()
-                var message = document.createElement("div")
-                document.body.appendChild(message);
-                message.id = "favorite-product-delete"
-                message.innerHTML = data;
-                setTimeout(() => {
-                    message.classList.add("closing-effect")
-                }, 3000)
+
+                location.reload()
+
             })
     }
 }

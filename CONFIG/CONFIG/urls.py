@@ -10,5 +10,6 @@ urlpatterns = [
     path("logout/",views.v_logout,name="logout"),
     path("user/",include("USERAPP.urls")),
     path("products/",include("PRODUCTS.urls"),name="products"),
+    path("payment/",include("ORDERS.urls"),name="payment")
 ]
 urlpatterns += static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)
