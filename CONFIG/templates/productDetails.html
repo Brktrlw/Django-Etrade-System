@@ -9,9 +9,21 @@
 
 
 
+
+
+
+
+
    <div class="container my-0 py-5 text-dark">
       <div class="row d-flex justify-content-center">
          <div class="col-md-10 col-lg-8 col-xl-6">
+
+             <div class="card">
+                <div class="card-body p-4">
+                </div>
+             </div>
+
+
             <div class="card">
                <div class="card-body p-4">
                   <div class="d-flex flex-start w-100">
@@ -44,32 +56,35 @@
          <div class="col-md-4 col-lg-6">
             <div class="card shadow-0 border" style="background-color: #f0f2f5;">
                <div class="card-body p-4">
+
                   <!-- Yorumun baslangıcı -->
-                  <div class="card">
+                   {% for comment in comments %}
+
+                  <div class="card" style="margin-bottom: 5px">
                      <div class="card-body">
-                        <p style="display:inline">Yorum İçeriği</p>
+                        <p style="display:inline">{{ comment.customer }}</p>
                         <div style="float:right">
-                           <p>3/12/2021-19:28</p>
+                           <p>{{ comment.createdDate}}</p>
                         </div>
                         <div class="d-flex justify-content-between">
                            <div class="d-flex flex-row align-items-center">
                               <img src="https://cdn-icons-png.flaticon.com/512/2922/2922510.png" alt="avatar" width="25" height="25">
-                                 <p class="small mb-0 ms-2">brktrl</p>
+                                 <p class="small mb-0 ms-2">{{ comment.commentText }}</p>
                            </div>
-
                            <div class="d-flex flex-row align-items-center">
-
+                            <!--
                                  <a type="submit"><i class="fa fa-thumbs-up" aria-hidden="true" style="color:green">&nbsp;</i></a>
                                  <p class="small text-muted mb-0">0</p>
 
                                  <a type="submit">&nbsp;<i class="fa fa-thumbs-down" aria-hidden="true" style="color:red"></i></a>
                                  <p class="small text-muted mb-0">0</p>
                               &nbsp;&nbsp;&nbsp;
-                           </div>
-
+                            -->
+                               </div>
                         </div>
                      </div>
                   </div>
+                   {% endfor %}
                   <!-- Yorumun Bitişi -->
                </div>
             </div>

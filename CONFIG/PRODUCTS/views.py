@@ -1,5 +1,5 @@
-from django.shortcuts import render
-from PRODUCTS.models import ProductModel,ProductCategorieModel
+from django.shortcuts import render,HttpResponse
+from PRODUCTS.models import ProductModel,ProductCategorieModel,ProductCommentsModel
 from USERAPP.models import CartModel
 
 def v_CategorieProducts(request,catTitle):
@@ -13,7 +13,15 @@ def v_products(request):
     return render(request,"products.html",{"products":products})
 
 def v_productDetail(request,productId):
-    return render(request,"productDetails.html",{"productId":productId})
+    try:
+        product  = ProductModel.objects.get(id=productId)
+    except:
+        return HttpResponse("Böyle bir sayfa bulunamadı")
+    try:
+        comments = ProductCommentsModel.objects.filter(product=product)
+    except:
+        comments=None
+    return render(request,"productDetails.html",{"product":product,"comments":comments})
 
 
 
