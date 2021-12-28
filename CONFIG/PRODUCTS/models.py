@@ -24,6 +24,7 @@ class ProductModel(models.Model):
             title = self.productTitle
             self.slug=slugify(unidecode(title))
         super(ProductModel, self).save()
+
     def __str__(self):
         return self.productTitle
 
