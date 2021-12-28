@@ -77,14 +77,15 @@ Manage.py dosyasının olduğu dizine geçtikten sonra `python manage.py runserv
 * Tüm platformlar
 
 ## Görseller
-Programın arayüzünden örnek görseller.
+Sistemin arayüzünden örnek görseller.
 <br>
 <img src="images/Untitled.png"></img><br>
 <img src="images/Untitled2.png"></img><br>
 <img src="images/Untitled3.png"></img><br>
 <img src="images/Untitled4.png"></img><br>
+<img src="images/Untitled5.png"></img><br>
 ## lisans
-Bu yazılım MIT Lisansı ile korunmaktadır. Daha fazla bilgi için `LICENSE` dosyasını okuyunuz.
+Bu yazılım GNU GENERAL PUBLIC Lisansı ile korunmaktadır. Daha fazla bilgi için `LICENSE` dosyasını okuyunuz.
 <br>Copyright (c) 2021 
 
 
