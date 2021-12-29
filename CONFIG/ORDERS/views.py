@@ -1,4 +1,4 @@
-from django.shortcuts import render,HttpResponse
+from django.shortcuts import render,redirect
 from USERAPP.models import CartModel
 from ORDERS.models import OrderItemModel,OrderModel
 

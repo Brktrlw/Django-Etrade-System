@@ -52,25 +52,31 @@ def v_cart(request):
     return render(request, "cart.html", {"products": products, "total": total})
 
 def v_checkout(request):
-    # Address eklendiğinde çalışan blok
-    form = OrderForm(request.POST or None)
-    if form.is_valid():
-        address = form.save(commit=False)
-        address.addressTitle = form.cleaned_data.get("addressTitle")
-        address.customer = request.user
-        address.save()
-        messages.success(request, "Address Başarıyla Eklendi")
-        return redirect("checkout")
-    # Address eklendiğinde çalışan blok
+    cartItems=CartModel.objects.filter(customer_id=request.user.id)
+    if not cartItems:
+        #eğer kullanıcının sepeti boşsa ve bu sayfaya gitmeye çalışıyorsa gelecek uyarı
+        return redirect("homePage")
+    else:
+        #eğer sepetinde ürün varsa bu sayfa açılacak
+        # Address eklendiğinde çalışan blok
+        form = OrderForm(request.POST or None)
+        if form.is_valid():
+            address = form.save(commit=False)
+            address.addressTitle = form.cleaned_data.get("addressTitle")
+            address.customer = request.user
+            address.save()
+            messages.success(request, "Address Başarıyla Eklendi")
+            return redirect("checkout")
+        # Address eklendiğinde çalışan blok
 
-    customerAddress = AddressModel.objects.filter(customer=request.user)
-    products = CartModel.objects.filter(customer=request.user)
-    total = 0
-    for product_ in products:
-        total += product_.product.productPrice * product_.amount
+        customerAddress = AddressModel.objects.filter(customer=request.user)
+        products = CartModel.objects.filter(customer=request.user)
+        total = 0
+        for product_ in products:
+            total += product_.product.productPrice * product_.amount
 
-    return render(request, "checkout.html",
-                  {"products": products, "total": total, "form": form, "customerAddress": customerAddress})
+        return render(request, "checkout.html",
+                      {"products": products, "total": total, "form": form, "customerAddress": customerAddress})
 
 
 def v_profile(request):

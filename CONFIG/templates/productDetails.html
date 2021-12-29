@@ -28,7 +28,7 @@
                         </div>
                         <div class="">
 
-                           <form action="{% url 'ProductDetails' product.id %}" method="POST">
+                           <form action="{% url 'ProductDetails' product.slug %}" method="POST">
                                {% csrf_token %}
                               <textarea class="form-control" name="commentText" rows="4" required=""></textarea><br>
                               <button type="submit" class="btn btn-outline-success btn-block">
