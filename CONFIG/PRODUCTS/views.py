@@ -19,7 +19,7 @@ def v_productDetail(request,slug):
     except:
         return HttpResponse("Böyle bir sayfa bulunamadı")
     try:
-        comments = ProductCommentsModel.objects.filter(product=product)
+        comments = ProductCommentsModel.objects.filter(product=product).order_by("-createdDate")
     except:
         comments=None
     commentForm=CommentForm(request.POST or None)

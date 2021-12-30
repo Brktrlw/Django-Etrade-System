@@ -10,6 +10,7 @@ urlpatterns = [
     path("profile/",views.v_profile,name="profile"),
     path("update_item/",views.f_update_item,name="update_item"),
     path("update-cart/",views.f_update_cart,name="update-cart"),
-    path("update-favorites/",views.f_update_favorites,name="update-favorites")
+    path("update-favorites/",views.f_update_favorites,name="update-favorites"),
+    path("orders/",views.v_myOrders,name="orders")
 
 ]

@@ -163,3 +163,6 @@ def f_update_favorites(request):
     return JsonResponse(
         "<div class='alert alert-success m-3 p-3 rounded'><i class='fa fa-check' aria-hidden='true'></i> Ürün Başarıyla Favorilerinizden Kaldırılmıştır</div>",
         safe=False)
+
+def v_myOrders(request):
+    return render(request,"myOrders.html")
