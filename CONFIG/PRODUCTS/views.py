@@ -3,9 +3,9 @@ from PRODUCTS.models import ProductModel,ProductCategorieModel,ProductCommentsMo
 from USERAPP.models import CartModel
 from .forms import CommentForm
 
-def v_CategorieProducts(request,catTitle):
-    cats=ProductCategorieModel.objects.filter(categorieTitle=catTitle)
-    products = ProductModel.objects.filter(productCategorie=cats[0].id)
+def v_CategorieProducts(request,catId):
+    cats = ProductCategorieModel.objects.get(id=catId)
+    products = ProductModel.objects.filter(productCategorie=cats.id)
     return render(request,"products.html",{"products":products,"cats":cats})
 
 def v_products(request):
