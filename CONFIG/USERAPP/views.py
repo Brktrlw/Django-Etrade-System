@@ -165,4 +165,4 @@ def f_update_favorites(request):
         safe=False)
 
 def v_myOrders(request):
-    return render(request,"myOrders.html")
+    return render(request,"orders.html")
