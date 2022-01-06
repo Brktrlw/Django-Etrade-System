@@ -1,6 +1,7 @@
 from django.db import models
 from unidecode import unidecode
 from django.template.defaultfilters import slugify
+
 class ProductCategorieModel(models.Model):
     categorieTitle = models.CharField(max_length=50,verbose_name="Kategori İsmi")
     def __str__(self):
