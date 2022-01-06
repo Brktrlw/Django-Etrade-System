@@ -8,7 +8,6 @@ def v_payment(request):
     ORDER      = OrderModel.objects.create(customer_id=request.user.id,complete=False,orderAddress_id=4)
     ORDER.save()
     for item in orderItems:
-        print(item.product.id)
         ITEM=OrderItemModel.objects.create(product_id=item.product.id,quantity=item.amount,order_id=ORDER.id)
         ITEM.save()
     orderItems.delete()

@@ -1,94 +1,117 @@
 {% extends 'includes/base.html' %}
-
+{% load extras %}
 {% block Title %}
-    <title>Ana Sayfa</title>
+<title>Ana Sayfa</title>
 {% endblock Title %}
-
 {% block BODY %}
-    {% include 'includes/navbar.html' %}
-
-   <div class="container my-0 py-5 text-dark">
-      <div class="row d-flex justify-content-center">
-         <div class="col-md-10 col-lg-8 col-xl-6">
-
-             <div class="card">
-                <div class="card-body p-4">
-                </div>
-             </div>
-
-
-            <div class="card">
-               <div class="card-body p-4">
-                  <div class="d-flex flex-start w-100">
-                     <img class="rounded-circle shadow-1-strong me-3" src="https://cdn-icons-png.flaticon.com/512/2922/2922510.png" alt="avatar" width="65" height="65">&nbsp;&nbsp;
-                     <div class="w-100">
-                        <h5>Yorum Yap</h5>
-                        <br>
-                        <div class="form-outline">
-                        </div>
-                        <div class="">
-
-                           <form action="{% url 'ProductDetails' product.slug %}" method="POST">
-                               {% csrf_token %}
-                              <textarea class="form-control" name="commentText" rows="4" required=""></textarea><br>
-                              <button type="submit" class="btn btn-outline-success btn-block">
-                              <i class="fa fa-paper-plane" aria-hidden="true"></i> Gönder</button>
-                           </form>
-
-                        </div>
-                     </div>
-                  </div>
-               </div>
+{% include 'includes/navbar.html' %}
+<div class="container my-0 py-5 text-dark">
+   <div class="row d-flex justify-content-center">
+      <div class="container">
+         <!-- Portfolio Item Heading -->
+         <h1 class="my-4">{{ product.productTitle }}
+            <small style="color: green">{{ product.productPrice }}₺</small>
+         </h1>
+         <!-- Portfolio Item Row -->
+         <div class="row">
+            <div class="col-md-8">
+               <img class="img-fluid" src="{{ product.productImage.url }}" alt="">
+            </div>
+            <div class="col-md-4">
+               <h3 class="my-3">Ürün Detayları</h3>
+               <p>{{ product.productDescription }}</p>
+               <h3 class="my-3">Kategoriler</h3>
+               <ul>
+                  {% for value in product.productCategorie.values %}
+                  {% for value_,key in value.items %}
+                  {% if key|is_numeric %}
+                  {% else %}
+                  <li class="badge badge-secondary">{{ key }}</li>
+                  {% endif %}
+                  {% endfor %}
+                  {% endfor %}
+               </ul>
+               <button class="btn btn-outline-success update-cart" data-product="{{ product.id }}" data-action="add" style="width: 32%"><i class="fa fa-cart-plus" aria-hidden="true"></i> Sepete Ekle</button>
+               <button class="btn btn-outline-danger update-favorite" style="width: 10%" data-product="{{ product.id }}" data-action="add"><i class="fa fa-heart"
+                  aria-hidden="true"></i></button>
             </div>
          </div>
+         <!-- /.row -->
+         <br>
       </div>
-      <br>
+      <div class="col-md-10 col-lg-8 col-xl-6">
 
-
-      <div class="row d-flex justify-content-center">
-         <div class="col-md-4 col-lg-6">
-            <div class="card shadow-0 border" style="background-color: #f0f2f5;">
-               <div class="card-body p-4">
-                    {% if  comments %}
-
-
-                  <!-- Yorumun baslangıcı -->
-                   {% for comment in comments %}
-
-                  <div class="card" style="margin-bottom: 5px">
-                     <div class="card-body">
-                        <p style="display:inline">{{ comment.customer }}</p>
-                        <div style="float:right">
-                           <p>{{ comment.createdDate}}</p>
-                        </div>
-                        <div class="d-flex justify-content-between">
-                           <div class="d-flex flex-row align-items-center">
-                              <img src="https://cdn-icons-png.flaticon.com/512/2922/2922510.png" alt="avatar" width="25" height="25">
-                                 <p class="small mb-0 ms-2">{{ comment.commentText }}</p>
-                           </div>
-                           <div class="d-flex flex-row align-items-center">
-                            <!--
-                                 <a type="submit"><i class="fa fa-thumbs-up" aria-hidden="true" style="color:green">&nbsp;</i></a>
-                                 <p class="small text-muted mb-0">0</p>
-
-                                 <a type="submit">&nbsp;<i class="fa fa-thumbs-down" aria-hidden="true" style="color:red"></i></a>
-                                 <p class="small text-muted mb-0">0</p>
-                              &nbsp;&nbsp;&nbsp;
-                            -->
-                               </div>
-                        </div>
+         <div class="card">
+            <div class="card-body p-4">
+               <div class="d-flex flex-start w-100">
+                  <img class="rounded-circle shadow-1-strong me-3"
+                     src="https://cdn-icons-png.flaticon.com/512/2922/2922510.png" alt="avatar" width="65"
+                     height="65">&nbsp;&nbsp;
+                  <div class="w-100">
+                     <h5>Yorum Yap</h5>
+                     <br>
+                     <div class="form-outline">
+                     </div>
+                     <div class="">
+                        <form action="{% url 'ProductDetails' product.slug %}" method="POST">
+                           {% csrf_token %}
+                           <textarea class="form-control" name="commentText" rows="4"
+                              required=""></textarea><br>
+                           <button type="submit" class="btn btn-outline-success btn-block">
+                           <i class="fa fa-paper-plane" aria-hidden="true"></i> Gönder
+                           </button>
+                        </form>
                      </div>
                   </div>
-                   {% endfor %}
-                        {% else %}
-                        <div class="text-center bg bg-danger" style="border-radius: 30px;padding:10px">Bu ürüne hiç yorum yapılmamış.</div>
-                {% endif %}
-                  <!-- Yorumun Bitişi -->
                </div>
             </div>
          </div>
       </div>
    </div>
-</div>
+   <br>
+   <div class="row d-flex justify-content-center">
+      <div class="col-md-4 col-lg-6">
+         <div class="card shadow-0 border" style="background-color: #f0f2f5;">
+            <div class="card-body p-4">
+               {% if  comments %}
+               <!-- Yorumun baslangıcı -->
+               {% for comment in comments %}
+               <div class="card" style="margin-bottom: 5px">
+                  <div class="card-body">
+                     <p style="display:inline">{{ comment.customer }}</p>
+                     <div style="float:right">
+                        <p>{{ comment.createdDate }}</p>
+                     </div>
+                     <div class="d-flex justify-content-between">
+                        <div class="d-flex flex-row align-items-center">
+                           <img src="https://cdn-icons-png.flaticon.com/512/2922/2922510.png"
+                              alt="avatar" width="25" height="25">
+                           <p class="small mb-0 ms-2">{{ comment.commentText }}</p>
+                        </div>
+                        <div class="d-flex flex-row align-items-center">
+                           <!--
+                              <a type="submit"><i class="fa fa-thumbs-up" aria-hidden="true" style="color:green">&nbsp;</i></a>
+                              <p class="small text-muted mb-0">0</p>
 
+                              <a type="submit">&nbsp;<i class="fa fa-thumbs-down" aria-hidden="true" style="color:red"></i></a>
+                              <p class="small text-muted mb-0">0</p>
+                              &nbsp;&nbsp;&nbsp;
+                              -->
+                        </div>
+                     </div>
+                  </div>
+               </div>
+               {% endfor %}
+               {% else %}
+               <div class="text-center bg bg-danger" style="border-radius: 30px;padding:10px">Bu ürüne hiç
+                  yorum yapılmamış.
+               </div>
+               {% endif %}
+               <!-- Yorumun Bitişi -->
+            </div>
+         </div>
+      </div>
+   </div>
+</div>
+</div>
 {% endblock BODY %}
