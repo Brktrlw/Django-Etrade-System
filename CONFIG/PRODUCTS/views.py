@@ -1,6 +1,5 @@
 from django.shortcuts import render,HttpResponse
 from PRODUCTS.models import ProductModel,ProductCategorieModel,ProductCommentsModel
-from USERAPP.models import CartModel
 from .forms import CommentForm
 
 def v_CategorieProducts(request,catTitle):
@@ -9,8 +8,11 @@ def v_CategorieProducts(request,catTitle):
     return render(request,"products.html",{"products":products,"cats":cats})
 
 def v_products(request):
-    products = ProductModel.objects.all()
-    cartAmount = CartModel.objects.filter(customer_id=request.user.id)
+    keyword=request.GET.get("keyword")
+    if keyword:
+        products=ProductModel.objects.filter(productTitle__contains=keyword)
+    else:
+        products = ProductModel.objects.all()
     return render(request,"products.html",{"products":products})
 
 def v_productDetail(request,slug):
