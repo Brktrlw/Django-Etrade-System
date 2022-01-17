@@ -13,3 +13,4 @@ def v_payment(request):
     orderItems.delete()
 
     return render(request,"success.html")
+

@@ -1,11 +1,6 @@
 @import url('https://fonts.googleapis.com/css2?family=Poppins&display=swap');
 
 
-* {
-    margin: 0;
-    padding: 0;
-    box-sizing: border-box;
-}
 
 body {
     font-family: 'Poppins', sans-serif;
@@ -66,8 +61,11 @@ input[placeholder] {
     box-shadow: none;
     border: 1.5px solid #0779e4
 }
-
+option{
+    cursor: pointer;
+}
 select {
+    cursor: pointer;
     display: block;
     width: 100%;
     border: 1px solid #ddd;

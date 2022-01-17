@@ -8,7 +8,7 @@ from django.http import JsonResponse
 import json
 from PRODUCTS.models import ProductModel
 from ORDERS.forms import OrderForm
-
+from ORDERS.models import OrderItemModel,OrderModel
 def v_register(request):
     form = RegisterForm(request.POST or None)
 
@@ -78,7 +78,6 @@ def v_checkout(request):
         return render(request, "checkout.html",
                       {"products": products, "total": total, "form": form, "customerAddress": customerAddress})
 
-
 def v_profile(request):
     user = CustomUserModel.objects.filter(id=request.user.id)
     userAddress = AddressModel.objects.filter(customer=request.user)
@@ -94,6 +93,8 @@ def v_profile(request):
         return redirect("profile")
 
     return render(request, "profile.html", {"user": user[0], "userAddress": userAddress,"adresForm": adresForm})
+
+
 
 def f_update_item(request):
     data = json.loads(request.body)
@@ -165,4 +166,6 @@ def f_update_favorites(request):
         safe=False)
 
 def v_myOrders(request):
-    return render(request,"orders.html")
+    customerOrders=OrderModel.objects.filter(customer_id=request.user.id)
+
+    return render(request,"orders.html",{"customerOrderList":customerOrders})
