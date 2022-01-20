@@ -15,7 +15,7 @@ class CustomUserModel(AbstractUser):
         return self.username
 
 class AddressModel(models.Model):
-    customer = models.ForeignKey(CustomUserModel, on_delete=models.CASCADE, verbose_name="Müşteri")
+    customer = models.ForeignKey(CustomUserModel, on_delete=models.CASCADE, verbose_name="Müşteri",related_name="address")
     addressTitle = models.CharField(verbose_name="Adres Başlığı", max_length=50, null=False, blank=False)
     addressCity = models.CharField(max_length=100, verbose_name="Şehir")
     addressText = models.TextField(verbose_name="Adres Detayı", max_length=1000, null=False, blank=False)

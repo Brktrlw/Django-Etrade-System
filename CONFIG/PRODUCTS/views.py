@@ -27,6 +27,7 @@ def v_productDetail(request,slug):
     except:
         comments=None
     commentForm=CommentForm(request.POST or None)
+
     if commentForm.is_valid():
         comment=commentForm.save(commit=False)
         comment.customer=request.user

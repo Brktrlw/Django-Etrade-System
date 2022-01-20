@@ -54,6 +54,8 @@ def v_cart(request):
     return render(request, "cart.html", {"products": products, "total": total})
 
 def v_checkout(request):
+
+
     cartItems=CartModel.objects.filter(customer_id=request.user.id)
     if not cartItems:
         #eğer kullanıcının sepeti boşsa ve bu sayfaya gitmeye çalışıyorsa gelecek uyarı
@@ -70,10 +72,10 @@ def v_checkout(request):
             messages.success(request, "Address Başarıyla Eklendi")
             return redirect("checkout")
         # Address eklendiğinde çalışan blok
-
         customerAddress = AddressModel.objects.filter(customer=request.user)
         products = CartModel.objects.filter(customer=request.user)
         total = 0
+
         for product_ in products:
             total += product_.product.productPrice * product_.amount
 
