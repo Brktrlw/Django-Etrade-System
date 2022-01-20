@@ -1,6 +1,7 @@
-from django.shortcuts import render,HttpResponse
+from django.shortcuts import render,HttpResponse,redirect
 from PRODUCTS.models import ProductModel,ProductCategorieModel,ProductCommentsModel
 from .forms import CommentForm
+
 
 def v_CategorieProducts(request,catTitle):
     cats = ProductCategorieModel.objects.get(categorieTitle=catTitle)
@@ -14,6 +15,7 @@ def v_products(request):
     else:
         products = ProductModel.objects.all()
     return render(request,"products.html",{"products":products})
+
 
 def v_productDetail(request,slug):
     try:
@@ -31,6 +33,7 @@ def v_productDetail(request,slug):
         comment.commentText=commentForm.cleaned_data.get("commentText")
         comment.product=product
         comment.save()
+        return redirect("ProductDetails",slug=slug)
     return render(request,"productDetails.html",{"product":product,"comments":comments})
 
 

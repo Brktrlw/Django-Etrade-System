@@ -8,7 +8,9 @@ from django.http import JsonResponse
 import json
 from PRODUCTS.models import ProductModel
 from ORDERS.forms import OrderForm
-from ORDERS.models import OrderItemModel,OrderModel
+from ORDERS.models import OrderModel
+
+
 def v_register(request):
     form = RegisterForm(request.POST or None)
 

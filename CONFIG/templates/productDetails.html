@@ -42,6 +42,7 @@
       <div class="col-md-10 col-lg-8 col-xl-6">
 
          <div class="card">
+             {% if user.is_authenticated %}
             <div class="card-body p-4">
                <div class="d-flex flex-start w-100">
                   <img class="rounded-circle shadow-1-strong me-3"
@@ -65,6 +66,12 @@
                   </div>
                </div>
             </div>
+                 {% else %}
+                 <div class="card-body p-4">
+               <div class="d-flex flex-start w-100">
+                   Yorum Yapmak İçin Lütfen Giriş Yapınız
+               </div></div>
+             {% endif %}
          </div>
       </div>
    </div>

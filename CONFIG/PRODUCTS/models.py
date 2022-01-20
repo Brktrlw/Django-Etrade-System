@@ -34,9 +34,9 @@ class ProductModel(models.Model):
         verbose_name_plural="Ürünler"
 
 class ProductCommentsModel(models.Model):
-    customer     =  models.ForeignKey("USERAPP.CustomUserModel",verbose_name="Müşteri İsmi",on_delete=models.CASCADE,default="")
+    customer     = models.ForeignKey("USERAPP.CustomUserModel",verbose_name="Müşteri İsmi",on_delete=models.CASCADE,default="")
     createdDate  = models.DateTimeField(auto_now_add=True,verbose_name="Oluşturulma Tarihi")
-    product      = models.ForeignKey(ProductModel,verbose_name="Ürün adı",on_delete=models.CASCADE)
+    product      = models.ForeignKey(ProductModel,verbose_name="Ürün adı",on_delete=models.CASCADE,related_name="comments")
     commentText  = models.TextField(max_length=250,verbose_name="Yorum",default=None)
     def __str__(self):
         return self.commentText
