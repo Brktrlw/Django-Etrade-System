@@ -19,7 +19,7 @@ def v_products(request):
 
 def v_productDetail(request,slug):
     try:
-        product  = ProductModel.objects.get(slug=slug)
+        product  = ProductModel.objects.get(newSlug=slug)
     except:
         return HttpResponse("Böyle bir sayfa bulunamadı")
     try:
@@ -34,7 +34,7 @@ def v_productDetail(request,slug):
         comment.commentText=commentForm.cleaned_data.get("commentText")
         comment.product=product
         comment.save()
-        return redirect("ProductDetails",slug=slug)
+        return redirect("ProductDetails",newSlug=slug)
     return render(request,"productDetails.html",{"product":product,"comments":comments})
 
 

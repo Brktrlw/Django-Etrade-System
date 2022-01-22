@@ -23,7 +23,6 @@ class ProductModel(models.Model):
     productImage = models.ImageField(verbose_name="Ürün Görseli", upload_to="products/",blank=True,null=True)
     productShipping = models.BooleanField(default=False,verbose_name="Ücretsiz Kargo Mu",blank=False,null=False)
     productCategorie = models.ManyToManyField(ProductCategorieModel,verbose_name="Kategori")
-   # slug         = models.SlugField(null=True,unique=True,editable=True)
     newSlug      = AutoSlugField(populate_from="productTitle",unique=True,blank=True,default="",editable=True)
 
     def save(self, force_insert=False, force_update=False, using=None,update_fields=None):
