@@ -10,6 +10,21 @@ from PRODUCTS.models import ProductModel
 from ORDERS.forms import OrderForm
 from ORDERS.models import OrderModel
 
+def isAnyUserName(customerUsername):
+    #Kayıt olurken yazılan kullanıcı adına ait bir kullanıcı adı veritabanında var mı diye kontrol eden method
+    isCustomerUserName = CustomUserModel.objects.filter(username=customerUsername)
+    if not isCustomerUserName:
+        return True
+    else:
+        return False
+
+def isAnyCustomerMail(customerMail):
+    #Kayıt olurken yazılan mail adresine ait bir mail veritabanında var mı diye kontrol eden method
+    isCustomerMail = CustomUserModel.objects.filter(email=customerMail)
+    if not isCustomerMail:
+        return True
+    else:
+        return False
 
 def v_register(request):
     form = RegisterForm(request.POST or None)
@@ -18,7 +33,16 @@ def v_register(request):
         userName = form.cleaned_data.get("userName")
         password = form.cleaned_data.get("password")
         email = form.cleaned_data.get("email")
-        newUser = User(username=userName)
+
+        #müşterinin kullanıcı ve adını sistemde kontrol ettiğimiz blok
+        if isAnyUserName(userName)==False:
+            messages.error(request,"Bu kullanıcı adı daha önce alınmış")
+            return redirect("register")
+        if isAnyCustomerMail(email)==False:
+            messages.error(request,"Bu mail adresi zaten sistemde kayıtlı")
+            return redirect("register")
+
+        newUser = User(username=userName,email=email)
         newUser.set_password(password)
         newUser.save()
         login(request, newUser)
@@ -54,8 +78,6 @@ def v_cart(request):
     return render(request, "cart.html", {"products": products, "total": total})
 
 def v_checkout(request):
-
-
     cartItems=CartModel.objects.filter(customer_id=request.user.id)
     if not cartItems:
         #eğer kullanıcının sepeti boşsa ve bu sayfaya gitmeye çalışıyorsa gelecek uyarı
@@ -97,8 +119,6 @@ def v_profile(request):
         return redirect("profile")
 
     return render(request, "profile.html", {"user": user[0], "userAddress": userAddress,"adresForm": adresForm})
-
-
 
 def f_update_item(request):
     data = json.loads(request.body)

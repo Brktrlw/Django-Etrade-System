@@ -62,12 +62,12 @@
                     <hr>
                     {% for product_ in products %}
                         <div class="cart-row">
-                            <div style="flex:2"><a href="{% url 'ProductDetails' product_.product.slug %}"><img
+                            <div style="flex:2"><a href="{% url 'ProductDetails' product_.product.newSlug %}"><img
                                     class="row-image cart-product-image"
                                     style="padding:10px;cursor: pointer"
                                     src="{{ product_.product.productImage.url }}"></a></div>
                             <div style="flex:2">
-                                <a href="{% url 'ProductDetails' product_.product.slug %}" style="text-decoration: none">
+                                <a href="{% url 'ProductDetails' product_.product.newSlug %}" style="text-decoration: none">
                                     <p>{{ product_.product.productTitle }}
                                 </a>
                                 </p>

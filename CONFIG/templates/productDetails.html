@@ -54,7 +54,7 @@
                      <div class="form-outline">
                      </div>
                      <div class="">
-                        <form action="{% url 'ProductDetails' product.slug %}" method="POST">
+                        <form action="{% url 'ProductDetails' product.newSlug %}" method="POST">
                            {% csrf_token %}
                            <textarea class="form-control" name="commentText" rows="4"
                               required=""></textarea><br>
