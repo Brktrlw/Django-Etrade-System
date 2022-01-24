@@ -1,5 +1,6 @@
-{% load kategori_list %}
-{% kategori_list as categories %}
+{% load extras %}
+{% f_cat_list as categories %}
+
 
 <nav class="navbar navbar-expand-lg navbar-dark bg-dark">
    <a class="navbar-brand" href="{% url 'homePage' %}">E-Trade</a>
@@ -39,9 +40,11 @@
        <ul class="navbar-nav mr-auto">
           <button class="btn btn-outline-success"><a href="{% url 'cart' %}"
              style="text-decoration: none;color: white"><i class="fa"
-             style="font-size:24px">&#xf07a;&nbsp;</i>
+             style="font-size:24px">&#xf07a;<i class="fa" style="font-size:24px"></i>
+<span class='badge badge-warning' id='lblCartCount'> {% f_countOfBasket request %} </span>&nbsp;</i>
 
           </span> Sepetim</a></button>&nbsp;
+
           <div class="btn-group">
              <button type="button" class="btn btn-primary dropdown-toggle" data-toggle="dropdown"
                 aria-haspopup="true" aria-expanded="false">
