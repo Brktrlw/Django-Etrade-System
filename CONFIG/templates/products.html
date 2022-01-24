@@ -30,22 +30,17 @@
             <h6 class="text-success">Ücretsiz Kargo</h6>
             {% endif %}
             <hr>
-            {% for value in product.productCategorie.values %}
-            {% for value_,key in value.items %}
-            {% if key|is_numeric %}
-            {% else %}
-            <span class="badge badge-secondary">{{ key }}</span>
-            {% endif %}
-            {% endfor %}
-            {% endfor %}
-            <span class="badge badge-secondary"></span>
+             {% for categorie in  product.productCategorie.all %}
+                 <span class="badge badge-secondary">{{ categorie }}</span>
+             {% endfor %}
+
             <span style="display: block"
                class="text-secondary">{{ product.productDescription|truncatechars:120 }}</span><br>
-
             <button class="btn btn-outline-success update-cart" data-product="{{ product.id }}" data-action="add" style="width: 32%"><i class="fa fa-cart-plus" aria-hidden="true"></i> Sepete Ekle</button>
 
             <button class="btn btn-primary" style="width: 30%"><a href="{% url 'ProductDetails' product.newSlug %}" style="text-decoration: none;color: white"><i class="fa fa-list-alt" aria-hidden="true"></i> Detaylar</a></button>
             <button class="btn btn-info" style="display: inline-block;float: right;width: 25%;">
+
             <strong>₺ {{ product.productPrice }}</strong></button>
             <button class="btn btn-outline-danger update-favorite" style="width: 10%" data-product="{{ product.id }}" data-action="add"><i class="fa fa-heart"
                aria-hidden="true"></i></button>

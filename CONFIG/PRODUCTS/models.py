@@ -5,6 +5,7 @@ from autoslug import AutoSlugField
 
 class ProductCategorieModel(models.Model):
     categorieTitle = models.CharField(max_length=50,verbose_name="Kategori İsmi")
+    materialIcon = models.CharField(null=True,max_length=50)
     def __str__(self):
         return self.categorieTitle
     class Meta:
@@ -12,7 +13,6 @@ class ProductCategorieModel(models.Model):
         verbose_name_plural="Kategoriler"
 
 class ProductModel(models.Model):
-
     class Meta:
         db_table = 'Products'
         verbose_name_plural = "Ürünler"

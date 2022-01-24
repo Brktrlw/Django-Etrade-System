@@ -1,3 +1,5 @@
+{% load kategori_list %}
+{% kategori_list as categories %}
 
 <nav class="navbar navbar-expand-lg navbar-dark bg-dark">
    <a class="navbar-brand" href="{% url 'homePage' %}">E-Trade</a>
@@ -16,14 +18,9 @@
             Kategoriler
             </a>
             <div class="dropdown-menu" aria-labelledby="navbarDropdown">
-
-               <a class="dropdown-item" href="/products/categorie/Teknolojik"><i class="material-icons">lens_blur</i> Teknolojik</a>
-               <a class="dropdown-item" href="/products/categorie/Bilgisayar"><i class="material-icons">computer</i> Bilgisayar</a>
-               <a class="dropdown-item" href="/products/categorie/Telefon"><i class="material-icons">phone_iphone</i> Telefon</a>
-               <a class="dropdown-item" href="/products/categorie/Klavye"><i class="material-icons">keyboard</i> Klavye</a>
-               <a class="dropdown-item" href="/products/categorie/Fare"><i class="material-icons">mouse</i> Fare</a>
-
-
+                {% for category in categories %}
+                       <a class="dropdown-item" href="/products/categorie/{{ category.categorieTitle }}"><i class="material-icons">{{ category.materialIcon }}</i> {{ category.categorieTitle }}</a>
+                {% endfor %}
 
             </div>
          </li>
@@ -72,4 +69,4 @@
    {% endif %}
    </div>
 </nav>
-
+{{ kategoriler }}

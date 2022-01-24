@@ -22,14 +22,11 @@
                <p>{{ product.productDescription }}</p>
                <h3 class="my-3">Kategoriler</h3>
                <ul>
-                  {% for value in product.productCategorie.values %}
-                  {% for value_,key in value.items %}
-                  {% if key|is_numeric %}
-                  {% else %}
-                  <li class="badge badge-secondary">{{ key }}</li>
-                  {% endif %}
-                  {% endfor %}
-                  {% endfor %}
+
+                {% for categorie in  product.productCategorie.all %}
+                 <span class="badge badge-secondary">{{ categorie }}</span>
+             {% endfor %}
+
                </ul>
                <button class="btn btn-outline-success update-cart" data-product="{{ product.id }}" data-action="add" style="width: 32%"><i class="fa fa-cart-plus" aria-hidden="true"></i> Sepete Ekle</button>
                <button class="btn btn-outline-danger update-favorite" style="width: 10%" data-product="{{ product.id }}" data-action="add"><i class="fa fa-heart"
