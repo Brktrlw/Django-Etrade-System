@@ -1,4 +1,3 @@
-import requests
 from django import template
 from PRODUCTS.models import ProductCategorieModel
 from USERAPP.models import CartModel
@@ -16,7 +15,6 @@ def is_numeric (value):
 def f_cat_list():
     categories=ProductCategorieModel.objects.all()
     return categories
-
 
 @register.simple_tag
 def f_countOfBasket(request):

@@ -10,11 +10,15 @@
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.css">
 <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css" rel="stylesheet">
 <link rel="stylesheet" href="{% static 'css/productsCSS.css' %}">
-    <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+<link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
 {% endblock CSS %}
 {% block BODY %}
 {% include 'includes/navbar.html' %}
-
+{% if messages %}
+{% for message in messages %}
+<div{% if message.tags %} class="alert alert-{{ message.tags }} m-3 p-3 rounded" style="position:fixed;top: 0px;left: 0px;width: %100;z-index: 9999;border-radius: 0px" {% endif %}> {{ message }}</div>
+{% endfor %}
+{% endif %}
 <div class="container" style="margin-top: 30px">
    <div class="row">
       {% for product in products %}
@@ -30,17 +34,14 @@
             <h6 class="text-success">Ücretsiz Kargo</h6>
             {% endif %}
             <hr>
-             {% for categorie in  product.productCategorie.all %}
-                 <span class="badge badge-secondary">{{ categorie }}</span>
-             {% endfor %}
-
+            {% for categorie in  product.productCategorie.all %}
+            <span class="badge badge-secondary">{{ categorie }}</span>
+            {% endfor %}
             <span style="display: block"
                class="text-secondary">{{ product.productDescription|truncatechars:120 }}</span><br>
             <button class="btn btn-outline-success update-cart" data-product="{{ product.id }}" data-action="add" style="width: 32%"><i class="fa fa-cart-plus" aria-hidden="true"></i> Sepete Ekle</button>
-
             <button class="btn btn-primary" style="width: 30%"><a href="{% url 'ProductDetails' product.newSlug %}" style="text-decoration: none;color: white"><i class="fa fa-list-alt" aria-hidden="true"></i> Detaylar</a></button>
             <button class="btn btn-info" style="display: inline-block;float: right;width: 25%;">
-
             <strong>₺ {{ product.productPrice }}</strong></button>
             <button class="btn btn-outline-danger update-favorite" style="width: 10%" data-product="{{ product.id }}" data-action="add"><i class="fa fa-heart"
                aria-hidden="true"></i></button>
@@ -48,12 +49,24 @@
       </div>
       <!-- Ürün Bitişi -->
       {% endfor %}
+      <nav aria-label="Page navigation example">
+         <ul class="pagination">
+            {% if products.has_previous %}
+            <li class="page-item"><a class="page-link" href="?page={{ products.previous_page_number }}">Önceki</a></li>
+            <li class="page-item"><a class="page-link" href="?page={{ products.previous_page_number }}">{{ products.previous_page_number }}</a></li>
+            {% else %}
+            <li class="page-item disabled"><a class="page-link">Önceki</a></li>
+            {% endif %}
+            <li class="page-item disabled"><a class="page-link">{{ products.number }}</a></li>
+            {% if products.has_next %}
+            <li class="page-item"><a class="page-link" href="?page={{ products.next_page_number }}">{{ products.next_page_number }}</a></li>
+            <li class="page-item"><a class="page-link" href="?page={{ products.next_page_number }}">Sonraki</a></li>
+            {% else %}
+            <li class="page-item disabled"><a class="page-link" href="">Sonraki</a></li>
+            {% endif %}
+         </ul>
+      </nav>
    </div>
 </div>
 </div>
-    {% if messages %}
-{% for message in messages %}
-<div{% if message.tags %} class="alert alert-{{ message.tags }} m-3 p-3 rounded" style="position:fixed;top: 0px;left: 0px;width: %100;z-index: 9999;border-radius: 0px" {% endif %}> {{ message }}</div>
-{% endfor %}
-{% endif %}
 {% endblock BODY %}

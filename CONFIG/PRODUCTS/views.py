@@ -1,7 +1,7 @@
 from django.shortcuts import render,HttpResponse,redirect
 from PRODUCTS.models import ProductModel,ProductCategorieModel,ProductCommentsModel
 from .forms import CommentForm
-
+from django.core.paginator import Paginator
 
 def v_CategorieProducts(request,catTitle):
     cats = ProductCategorieModel.objects.get(categorieTitle=catTitle)
@@ -9,12 +9,17 @@ def v_CategorieProducts(request,catTitle):
     return render(request,"products.html",{"products":products,"cats":cats})
 
 def v_products(request):
-    keyword=request.GET.get("keyword")
+    keyword= request.GET.get("keyword")
+    sayfa  = request.GET.get("page")
     if keyword:
+        # arama yaparak ürün getirme
         products=ProductModel.objects.filter(productTitle__contains=keyword)
     else:
+        # tüm ürünleri listeleme
         products = ProductModel.objects.all()
-    return render(request,"products.html",{"products":products})
+        paginator=Paginator(products,3)
+
+    return render(request,"products.html",{"products":paginator.get_page(sayfa)})
 
 
 def v_productDetail(request,slug):
