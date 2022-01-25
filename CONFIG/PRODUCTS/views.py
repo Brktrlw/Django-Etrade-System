@@ -23,6 +23,7 @@ def v_products(request):
 
 
 def v_productDetail(request,slug):
+
     try:
         product  = ProductModel.objects.get(newSlug=slug)
     except:
@@ -32,14 +33,13 @@ def v_productDetail(request,slug):
     except:
         comments=None
     commentForm=CommentForm(request.POST or None)
-    print(product.productCategorie.all())
     if commentForm.is_valid():
         comment=commentForm.save(commit=False)
         comment.customer=request.user
         comment.commentText=commentForm.cleaned_data.get("commentText")
         comment.product=product
         comment.save()
-        return redirect("ProductDetails",newSlug=slug)
+        return redirect("ProductDetails",slug=slug)
     return render(request,"productDetails.html",{"product":product,"comments":comments})
 
 
