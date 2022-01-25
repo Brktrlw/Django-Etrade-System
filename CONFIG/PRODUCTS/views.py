@@ -23,7 +23,6 @@ def v_products(request):
 
 
 def v_productDetail(request,slug):
-
     try:
         product  = ProductModel.objects.get(newSlug=slug)
     except:

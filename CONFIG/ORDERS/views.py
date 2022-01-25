@@ -5,6 +5,8 @@ from ORDERS.models import OrderItemModel,OrderModel
 
 def v_payment(request):
     orderItems = CartModel.objects.filter(customer_id=request.user.id)
+    if not orderItems:
+        return redirect("homePage")
     ORDER      = OrderModel.objects.create(customer_id=request.user.id,complete=False)
     ORDER.save()
     for item in orderItems:
