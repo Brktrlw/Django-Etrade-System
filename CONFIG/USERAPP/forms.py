@@ -57,3 +57,4 @@ class AddressForm(forms.ModelForm):
                    "style": "max-height: 150px;"})
         self.fields["addressCity"].widget = forms.TextInput(
             attrs={"class": "form-control", "placeholder": "Şehir Giriniz"})
+

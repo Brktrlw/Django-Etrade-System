@@ -6,9 +6,11 @@ from django.contrib import messages
 from USERAPP.models import CartModel, FavoriteModel, AddressModel, CustomUserModel
 from django.http import JsonResponse
 import json
+from django.contrib.auth.decorators import login_required
 from PRODUCTS.models import ProductModel
 from ORDERS.forms import OrderForm
 from ORDERS.models import OrderModel
+from django.contrib.auth.forms import UserChangeForm
 
 def isAnyUserName(customerUsername):
     #Kayıt olurken yazılan kullanıcı adına ait bir kullanıcı adı veritabanında var mı diye kontrol eden method
@@ -104,20 +106,17 @@ def v_checkout(request):
         return render(request, "checkout.html",
                       {"products": products, "total": total, "form": form, "customerAddress": customerAddress})
 
+@login_required(login_url='homePage')
 def v_profile(request):
     user = CustomUserModel.objects.filter(id=request.user.id)
     userAddress = AddressModel.objects.filter(customer=request.user)
     adresForm= AddressForm(request.POST or None)
     if adresForm.is_valid():
         address = adresForm.save(commit=False)
-        address.addressTitle = adresForm.cleaned_data.get("addressTitle")
-        address.addressCity = adresForm.cleaned_data.get("addressCity")
-        address.addressText = adresForm.cleaned_data.get("addressText")
         address.customer = request.user
         address.save()
         messages.success(request, "Address Başarıyla Eklendi")
         return redirect("profile")
-
     return render(request, "profile.html", {"user": user[0], "userAddress": userAddress,"adresForm": adresForm})
 
 def f_update_item(request):
