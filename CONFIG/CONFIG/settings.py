@@ -14,7 +14,7 @@ SECRET_KEY = 'django-insecure-lp&!@=v5z(qr)t^@ylmc5g=!25+yz%8t8u99-4p)jpi(upv(10
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
 
-ALLOWED_HOSTS = ["*"]
+ALLOWED_HOSTS = []
 
 # Application definition
 
@@ -127,3 +127,31 @@ MESSAGE_TAGS = {message_constants.DEBUG: 'debug',
 MEDIA_URL = "/media/"
 MEDIA_ROOT = os.path.join(BASE_DIR, "media")
 AUTH_USER_MODEL = "USERAPP.CustomUserModel"
+
+LOGGING={
+    "version":1,
+    "disable_existing_loggers":False,
+    'formatters':{
+        "basit_ifade":{
+            "format":"{asctime} {message} {name} {levelname}",
+            "style": "{",
+        }
+    },
+    "handlers":{
+        "console":{
+            "class":"logging.StreamHandler"
+        },
+        "file":{
+            "class":"logging.FileHandler",
+            "filename":"logs/giris_yapanlar.log",
+            "formatter":"basit_ifade"
+        }
+    },
+    "loggers:":{
+        "giris_yapma":{
+            "handlers":["file"],
+            "level":"INFO",
+            "formatter":"basit_ifade"
+        }
+    }
+}

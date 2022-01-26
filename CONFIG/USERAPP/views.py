@@ -10,6 +10,8 @@ from django.contrib.auth.decorators import login_required
 from PRODUCTS.models import ProductModel
 from ORDERS.forms import OrderForm
 from ORDERS.models import OrderModel
+import logging
+
 
 def isAnyUserName(customerUsername):
     #Kayıt olurken yazılan kullanıcı adına ait bir kullanıcı adı veritabanında var mı diye kontrol eden method
@@ -63,6 +65,8 @@ def v_login(request):
             return render(request, "loginPage.html", {"form": form})
         else:
             login(request, user)
+            logger = logging.getLogger("giris_yapma")
+            logger.warning("Giriş yapıldı: " + request.user.username)
             return redirect("homePage")
 
     return render(request, "loginPage.html", {"form": form})
