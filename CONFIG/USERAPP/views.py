@@ -10,7 +10,6 @@ from django.contrib.auth.decorators import login_required
 from PRODUCTS.models import ProductModel
 from ORDERS.forms import OrderForm
 from ORDERS.models import OrderModel
-from django.contrib.auth.forms import UserChangeForm
 
 def isAnyUserName(customerUsername):
     #Kayıt olurken yazılan kullanıcı adına ait bir kullanıcı adı veritabanında var mı diye kontrol eden method
@@ -72,6 +71,7 @@ def v_favorites(request):
     favorites = FavoriteModel.objects.filter(customer=request.user)
     return render(request, "favorites.html", {"favorites": favorites})
 
+@login_required(login_url='login')
 def v_cart(request):
     products = CartModel.objects.filter(customer=request.user)
     total = 0
@@ -192,3 +192,4 @@ def v_myOrders(request):
     customerOrders=OrderModel.objects.filter(customer_id=request.user.id)
 
     return render(request,"orders.html",{"customerOrderList":customerOrders})
+
